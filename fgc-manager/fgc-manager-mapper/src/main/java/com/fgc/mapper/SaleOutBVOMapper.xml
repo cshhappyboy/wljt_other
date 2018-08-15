@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.SaleOutBVOMapper" >
+  <resultMap id="BaseResultMap" type="com.fgc.pojo.SaleOutBVO" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="HID" property="hid" jdbcType="VARCHAR" />
+    <result column="PK_GROUP" property="pkGroup" jdbcType="VARCHAR" />
+    <result column="PK_ORG" property="pkOrg" jdbcType="VARCHAR" />
+    <result column="VROWNUM" property="vrownum" jdbcType="VARCHAR" />
+    <result column="CMATERIAL" property="cmaterial" jdbcType="VARCHAR" />
+    <result column="MATERIALNAME" property="materialname" jdbcType="VARCHAR" />
+    <result column="MATERIALSPEC" property="materialspec" jdbcType="VARCHAR" />
+    <result column="MATERIALTYPE" property="materialtype" jdbcType="VARCHAR" />
+    <result column="CASTUNITID" property="castunitid" jdbcType="VARCHAR" />
+    <result column="NPRICE" property="nprice" jdbcType="DECIMAL" />
+    <result column="NMNY" property="nmny" jdbcType="DECIMAL" />
+    <result column="CUNITID" property="cunitid" jdbcType="VARCHAR" />
+    <result column="VTRANSRATE" property="vtransrate" jdbcType="VARCHAR" />
+    <result column="VBATCHCODE" property="vbatchcode" jdbcType="VARCHAR" />
+    <result column="NSHOULDASSISTNUM" property="nshouldassistnum" jdbcType="DECIMAL" />
+    <result column="NSHOULDNUM" property="nshouldnum" jdbcType="DECIMAL" />
+    <result column="NASSISTNUM" property="nassistnum" jdbcType="DECIMAL" />
+    <result column="NNUM" property="nnum" jdbcType="DECIMAL" />
+    <result column="DBIZDATE" property="dbizdate" jdbcType="VARCHAR" />
+    <result column="VBDEF1" property="vbdef1" jdbcType="VARCHAR" />
+    <result column="VBDEF2" property="vbdef2" jdbcType="VARCHAR" />
+    <result column="VBDEF3" property="vbdef3" jdbcType="VARCHAR" />
+    <result column="VBDEF4" property="vbdef4" jdbcType="VARCHAR" />
+    <result column="VBDEF5" property="vbdef5" jdbcType="VARCHAR" />
+    <result column="VSRCID" property="vsrcid" jdbcType="VARCHAR" />
+    <result column="VBDEF6" property="vbdef6" jdbcType="VARCHAR" />
+    <result column="VSRCBID" property="vsrcbid" jdbcType="VARCHAR" />
+    <result column="VBDEF7" property="vbdef7" jdbcType="VARCHAR" />
+    <result column="VBDEF8" property="vbdef8" jdbcType="VARCHAR" />
+    <result column="VBDEF9" property="vbdef9" jdbcType="VARCHAR" />
+    <result column="VBDEF10" property="vbdef10" jdbcType="VARCHAR" />
+    <result column="ISSYNC" property="issync" jdbcType="DECIMAL" />
+    <result column="TS" property="ts" jdbcType="VARCHAR" />
+    <result column="DR" property="dr" jdbcType="DECIMAL" />
+    <result column="VORDERHID" property="vorderhid" jdbcType="VARCHAR" />
+    <result column="VORDERBID" property="vorderbid" jdbcType="VARCHAR" />
+    <result column="MATERIALCODE" property="materialcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, HID, PK_GROUP, PK_ORG, VROWNUM, CMATERIAL, MATERIALNAME, MATERIALSPEC, MATERIALTYPE, 
+    CASTUNITID, NPRICE, NMNY, CUNITID, VTRANSRATE, VBATCHCODE, NSHOULDASSISTNUM, NSHOULDNUM, 
+    NASSISTNUM, NNUM, DBIZDATE, VBDEF1, VBDEF2, VBDEF3, VBDEF4, VBDEF5, VSRCID, VBDEF6, 
+    VSRCBID, VBDEF7, VBDEF8, VBDEF9, VBDEF10, ISSYNC, TS, DR, VORDERHID, VORDERBID, MATERIALCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fgc.pojo.SaleOutBVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SO_SALEOUT_B
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SO_SALEOUT_B
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SO_SALEOUT_B
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fgc.pojo.SaleOutBVOExample" >
+    delete from SO_SALEOUT_B
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fgc.pojo.SaleOutBVO" >
+    insert into SO_SALEOUT_B (ID, HID, PK_GROUP, 
+      PK_ORG, VROWNUM, CMATERIAL, 
+      MATERIALNAME, MATERIALSPEC, MATERIALTYPE, 
+      CASTUNITID, NPRICE, NMNY, 
+      CUNITID, VTRANSRATE, VBATCHCODE, 
+      NSHOULDASSISTNUM, NSHOULDNUM, NASSISTNUM, 
+      NNUM, DBIZDATE, VBDEF1, 
+      VBDEF2, VBDEF3, VBDEF4, 
+      VBDEF5, VSRCID, VBDEF6, 
+      VSRCBID, VBDEF7, VBDEF8, 
+      VBDEF9, VBDEF10, ISSYNC, 
+      TS, DR, VORDERHID, 
+      VORDERBID, MATERIALCODE)
+    values (#{id,jdbcType=VARCHAR}, #{hid,jdbcType=VARCHAR}, #{pkGroup,jdbcType=VARCHAR}, 
+      #{pkOrg,jdbcType=VARCHAR}, #{vrownum,jdbcType=VARCHAR}, #{cmaterial,jdbcType=VARCHAR}, 
+      #{materialname,jdbcType=VARCHAR}, #{materialspec,jdbcType=VARCHAR}, #{materialtype,jdbcType=VARCHAR}, 
+      #{castunitid,jdbcType=VARCHAR}, #{nprice,jdbcType=DECIMAL}, #{nmny,jdbcType=DECIMAL}, 
+      #{cunitid,jdbcType=VARCHAR}, #{vtransrate,jdbcType=VARCHAR}, #{vbatchcode,jdbcType=VARCHAR}, 
+      #{nshouldassistnum,jdbcType=DECIMAL}, #{nshouldnum,jdbcType=DECIMAL}, #{nassistnum,jdbcType=DECIMAL}, 
+      #{nnum,jdbcType=DECIMAL}, #{dbizdate,jdbcType=VARCHAR}, #{vbdef1,jdbcType=VARCHAR}, 
+      #{vbdef2,jdbcType=VARCHAR}, #{vbdef3,jdbcType=VARCHAR}, #{vbdef4,jdbcType=VARCHAR}, 
+      #{vbdef5,jdbcType=VARCHAR}, #{vsrcid,jdbcType=VARCHAR}, #{vbdef6,jdbcType=VARCHAR}, 
+      #{vsrcbid,jdbcType=VARCHAR}, #{vbdef7,jdbcType=VARCHAR}, #{vbdef8,jdbcType=VARCHAR}, 
+      #{vbdef9,jdbcType=VARCHAR}, #{vbdef10,jdbcType=VARCHAR}, #{issync,jdbcType=DECIMAL}, 
+      #{ts,jdbcType=VARCHAR}, #{dr,jdbcType=DECIMAL}, #{vorderhid,jdbcType=VARCHAR}, 
+      #{vorderbid,jdbcType=VARCHAR}, #{materialcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fgc.pojo.SaleOutBVO" >
+    insert into SO_SALEOUT_B
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="hid != null" >
+        HID,
+      </if>
+      <if test="pkGroup != null" >
+        PK_GROUP,
+      </if>
+      <if test="pkOrg != null" >
+        PK_ORG,
+      </if>
+      <if test="vrownum != null" >
+        VROWNUM,
+      </if>
+      <if test="cmaterial != null" >
+        CMATERIAL,
+      </if>
+      <if test="materialname != null" >
+        MATERIALNAME,
+      </if>
+      <if test="materialspec != null" >
+        MATERIALSPEC,
+      </if>
+      <if test="materialtype != null" >
+        MATERIALTYPE,
+      </if>
+      <if test="castunitid != null" >
+        CASTUNITID,
+      </if>
+      <if test="nprice != null" >
+        NPRICE,
+      </if>
+      <if test="nmny != null" >
+        NMNY,
+      </if>
+      <if test="cunitid != null" >
+        CUNITID,
+      </if>
+      <if test="vtransrate != null" >
+        VTRANSRATE,
+      </if>
+      <if test="vbatchcode != null" >
+        VBATCHCODE,
+      </if>
+      <if test="nshouldassistnum != null" >
+        NSHOULDASSISTNUM,
+      </if>
+      <if test="nshouldnum != null" >
+        NSHOULDNUM,
+      </if>
+      <if test="nassistnum != null" >
+        NASSISTNUM,
+      </if>
+      <if test="nnum != null" >
+        NNUM,
+      </if>
+      <if test="dbizdate != null" >
+        DBIZDATE,
+      </if>
+      <if test="vbdef1 != null" >
+        VBDEF1,
+      </if>
+      <if test="vbdef2 != null" >
+        VBDEF2,
+      </if>
+      <if test="vbdef3 != null" >
+        VBDEF3,
+      </if>
+      <if test="vbdef4 != null" >
+        VBDEF4,
+      </if>
+      <if test="vbdef5 != null" >
+        VBDEF5,
+      </if>
+      <if test="vsrcid != null" >
+        VSRCID,
+      </if>
+      <if test="vbdef6 != null" >
+        VBDEF6,
+      </if>
+      <if test="vsrcbid != null" >
+        VSRCBID,
+      </if>
+      <if test="vbdef7 != null" >
+        VBDEF7,
+      </if>
+      <if test="vbdef8 != null" >
+        VBDEF8,
+      </if>
+      <if test="vbdef9 != null" >
+        VBDEF9,
+      </if>
+      <if test="vbdef10 != null" >
+        VBDEF10,
+      </if>
+      <if test="issync != null" >
+        ISSYNC,
+      </if>
+      <if test="ts != null" >
+        TS,
+      </if>
+      <if test="dr != null" >
+        DR,
+      </if>
+      <if test="vorderhid != null" >
+        VORDERHID,
+      </if>
+      <if test="vorderbid != null" >
+        VORDERBID,
+      </if>
+      <if test="materialcode != null" >
+        MATERIALCODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="hid != null" >
+        #{hid,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGroup != null" >
+        #{pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pkOrg != null" >
+        #{pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="vrownum != null" >
+        #{vrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="cmaterial != null" >
+        #{cmaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="materialname != null" >
+        #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="materialspec != null" >
+        #{materialspec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialtype != null" >
+        #{materialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="castunitid != null" >
+        #{castunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="nprice != null" >
+        #{nprice,jdbcType=DECIMAL},
+      </if>
+      <if test="nmny != null" >
+        #{nmny,jdbcType=DECIMAL},
+      </if>
+      <if test="cunitid != null" >
+        #{cunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="vtransrate != null" >
+        #{vtransrate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbatchcode != null" >
+        #{vbatchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="nshouldassistnum != null" >
+        #{nshouldassistnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nshouldnum != null" >
+        #{nshouldnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nassistnum != null" >
+        #{nassistnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nnum != null" >
+        #{nnum,jdbcType=DECIMAL},
+      </if>
+      <if test="dbizdate != null" >
+        #{dbizdate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef1 != null" >
+        #{vbdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef2 != null" >
+        #{vbdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef3 != null" >
+        #{vbdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef4 != null" >
+        #{vbdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef5 != null" >
+        #{vbdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrcid != null" >
+        #{vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef6 != null" >
+        #{vbdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrcbid != null" >
+        #{vsrcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef7 != null" >
+        #{vbdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef8 != null" >
+        #{vbdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef9 != null" >
+        #{vbdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef10 != null" >
+        #{vbdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="issync != null" >
+        #{issync,jdbcType=DECIMAL},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="vorderhid != null" >
+        #{vorderhid,jdbcType=VARCHAR},
+      </if>
+      <if test="vorderbid != null" >
+        #{vorderbid,jdbcType=VARCHAR},
+      </if>
+      <if test="materialcode != null" >
+        #{materialcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fgc.pojo.SaleOutBVOExample" resultType="java.lang.Integer" >
+    select count(*) from SO_SALEOUT_B
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SO_SALEOUT_B
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hid != null" >
+        HID = #{record.hid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkGroup != null" >
+        PK_GROUP = #{record.pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkOrg != null" >
+        PK_ORG = #{record.pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vrownum != null" >
+        VROWNUM = #{record.vrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmaterial != null" >
+        CMATERIAL = #{record.cmaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialname != null" >
+        MATERIALNAME = #{record.materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialspec != null" >
+        MATERIALSPEC = #{record.materialspec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialtype != null" >
+        MATERIALTYPE = #{record.materialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.castunitid != null" >
+        CASTUNITID = #{record.castunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nprice != null" >
+        NPRICE = #{record.nprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nmny != null" >
+        NMNY = #{record.nmny,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cunitid != null" >
+        CUNITID = #{record.cunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vtransrate != null" >
+        VTRANSRATE = #{record.vtransrate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbatchcode != null" >
+        VBATCHCODE = #{record.vbatchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nshouldassistnum != null" >
+        NSHOULDASSISTNUM = #{record.nshouldassistnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nshouldnum != null" >
+        NSHOULDNUM = #{record.nshouldnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nassistnum != null" >
+        NASSISTNUM = #{record.nassistnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nnum != null" >
+        NNUM = #{record.nnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dbizdate != null" >
+        DBIZDATE = #{record.dbizdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef1 != null" >
+        VBDEF1 = #{record.vbdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef2 != null" >
+        VBDEF2 = #{record.vbdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef3 != null" >
+        VBDEF3 = #{record.vbdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef4 != null" >
+        VBDEF4 = #{record.vbdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef5 != null" >
+        VBDEF5 = #{record.vbdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vsrcid != null" >
+        VSRCID = #{record.vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef6 != null" >
+        VBDEF6 = #{record.vbdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vsrcbid != null" >
+        VSRCBID = #{record.vsrcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef7 != null" >
+        VBDEF7 = #{record.vbdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef8 != null" >
+        VBDEF8 = #{record.vbdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef9 != null" >
+        VBDEF9 = #{record.vbdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef10 != null" >
+        VBDEF10 = #{record.vbdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issync != null" >
+        ISSYNC = #{record.issync,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ts != null" >
+        TS = #{record.ts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dr != null" >
+        DR = #{record.dr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vorderhid != null" >
+        VORDERHID = #{record.vorderhid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vorderbid != null" >
+        VORDERBID = #{record.vorderbid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialcode != null" >
+        MATERIALCODE = #{record.materialcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SO_SALEOUT_B
+    set ID = #{record.id,jdbcType=VARCHAR},
+      HID = #{record.hid,jdbcType=VARCHAR},
+      PK_GROUP = #{record.pkGroup,jdbcType=VARCHAR},
+      PK_ORG = #{record.pkOrg,jdbcType=VARCHAR},
+      VROWNUM = #{record.vrownum,jdbcType=VARCHAR},
+      CMATERIAL = #{record.cmaterial,jdbcType=VARCHAR},
+      MATERIALNAME = #{record.materialname,jdbcType=VARCHAR},
+      MATERIALSPEC = #{record.materialspec,jdbcType=VARCHAR},
+      MATERIALTYPE = #{record.materialtype,jdbcType=VARCHAR},
+      CASTUNITID = #{record.castunitid,jdbcType=VARCHAR},
+      NPRICE = #{record.nprice,jdbcType=DECIMAL},
+      NMNY = #{record.nmny,jdbcType=DECIMAL},
+      CUNITID = #{record.cunitid,jdbcType=VARCHAR},
+      VTRANSRATE = #{record.vtransrate,jdbcType=VARCHAR},
+      VBATCHCODE = #{record.vbatchcode,jdbcType=VARCHAR},
+      NSHOULDASSISTNUM = #{record.nshouldassistnum,jdbcType=DECIMAL},
+      NSHOULDNUM = #{record.nshouldnum,jdbcType=DECIMAL},
+      NASSISTNUM = #{record.nassistnum,jdbcType=DECIMAL},
+      NNUM = #{record.nnum,jdbcType=DECIMAL},
+      DBIZDATE = #{record.dbizdate,jdbcType=VARCHAR},
+      VBDEF1 = #{record.vbdef1,jdbcType=VARCHAR},
+      VBDEF2 = #{record.vbdef2,jdbcType=VARCHAR},
+      VBDEF3 = #{record.vbdef3,jdbcType=VARCHAR},
+      VBDEF4 = #{record.vbdef4,jdbcType=VARCHAR},
+      VBDEF5 = #{record.vbdef5,jdbcType=VARCHAR},
+      VSRCID = #{record.vsrcid,jdbcType=VARCHAR},
+      VBDEF6 = #{record.vbdef6,jdbcType=VARCHAR},
+      VSRCBID = #{record.vsrcbid,jdbcType=VARCHAR},
+      VBDEF7 = #{record.vbdef7,jdbcType=VARCHAR},
+      VBDEF8 = #{record.vbdef8,jdbcType=VARCHAR},
+      VBDEF9 = #{record.vbdef9,jdbcType=VARCHAR},
+      VBDEF10 = #{record.vbdef10,jdbcType=VARCHAR},
+      ISSYNC = #{record.issync,jdbcType=DECIMAL},
+      TS = #{record.ts,jdbcType=VARCHAR},
+      DR = #{record.dr,jdbcType=DECIMAL},
+      VORDERHID = #{record.vorderhid,jdbcType=VARCHAR},
+      VORDERBID = #{record.vorderbid,jdbcType=VARCHAR},
+      MATERIALCODE = #{record.materialcode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.SaleOutBVO" >
+    update SO_SALEOUT_B
+    <set >
+      <if test="hid != null" >
+        HID = #{hid,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGroup != null" >
+        PK_GROUP = #{pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pkOrg != null" >
+        PK_ORG = #{pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="vrownum != null" >
+        VROWNUM = #{vrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="cmaterial != null" >
+        CMATERIAL = #{cmaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="materialname != null" >
+        MATERIALNAME = #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="materialspec != null" >
+        MATERIALSPEC = #{materialspec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialtype != null" >
+        MATERIALTYPE = #{materialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="castunitid != null" >
+        CASTUNITID = #{castunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="nprice != null" >
+        NPRICE = #{nprice,jdbcType=DECIMAL},
+      </if>
+      <if test="nmny != null" >
+        NMNY = #{nmny,jdbcType=DECIMAL},
+      </if>
+      <if test="cunitid != null" >
+        CUNITID = #{cunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="vtransrate != null" >
+        VTRANSRATE = #{vtransrate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbatchcode != null" >
+        VBATCHCODE = #{vbatchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="nshouldassistnum != null" >
+        NSHOULDASSISTNUM = #{nshouldassistnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nshouldnum != null" >
+        NSHOULDNUM = #{nshouldnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nassistnum != null" >
+        NASSISTNUM = #{nassistnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nnum != null" >
+        NNUM = #{nnum,jdbcType=DECIMAL},
+      </if>
+      <if test="dbizdate != null" >
+        DBIZDATE = #{dbizdate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef1 != null" >
+        VBDEF1 = #{vbdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef2 != null" >
+        VBDEF2 = #{vbdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef3 != null" >
+        VBDEF3 = #{vbdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef4 != null" >
+        VBDEF4 = #{vbdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef5 != null" >
+        VBDEF5 = #{vbdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrcid != null" >
+        VSRCID = #{vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef6 != null" >
+        VBDEF6 = #{vbdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrcbid != null" >
+        VSRCBID = #{vsrcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef7 != null" >
+        VBDEF7 = #{vbdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef8 != null" >
+        VBDEF8 = #{vbdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef9 != null" >
+        VBDEF9 = #{vbdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef10 != null" >
+        VBDEF10 = #{vbdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="issync != null" >
+        ISSYNC = #{issync,jdbcType=DECIMAL},
+      </if>
+      <if test="ts != null" >
+        TS = #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        DR = #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="vorderhid != null" >
+        VORDERHID = #{vorderhid,jdbcType=VARCHAR},
+      </if>
+      <if test="vorderbid != null" >
+        VORDERBID = #{vorderbid,jdbcType=VARCHAR},
+      </if>
+      <if test="materialcode != null" >
+        MATERIALCODE = #{materialcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fgc.pojo.SaleOutBVO" >
+    update SO_SALEOUT_B
+    set HID = #{hid,jdbcType=VARCHAR},
+      PK_GROUP = #{pkGroup,jdbcType=VARCHAR},
+      PK_ORG = #{pkOrg,jdbcType=VARCHAR},
+      VROWNUM = #{vrownum,jdbcType=VARCHAR},
+      CMATERIAL = #{cmaterial,jdbcType=VARCHAR},
+      MATERIALNAME = #{materialname,jdbcType=VARCHAR},
+      MATERIALSPEC = #{materialspec,jdbcType=VARCHAR},
+      MATERIALTYPE = #{materialtype,jdbcType=VARCHAR},
+      CASTUNITID = #{castunitid,jdbcType=VARCHAR},
+      NPRICE = #{nprice,jdbcType=DECIMAL},
+      NMNY = #{nmny,jdbcType=DECIMAL},
+      CUNITID = #{cunitid,jdbcType=VARCHAR},
+      VTRANSRATE = #{vtransrate,jdbcType=VARCHAR},
+      VBATCHCODE = #{vbatchcode,jdbcType=VARCHAR},
+      NSHOULDASSISTNUM = #{nshouldassistnum,jdbcType=DECIMAL},
+      NSHOULDNUM = #{nshouldnum,jdbcType=DECIMAL},
+      NASSISTNUM = #{nassistnum,jdbcType=DECIMAL},
+      NNUM = #{nnum,jdbcType=DECIMAL},
+      DBIZDATE = #{dbizdate,jdbcType=VARCHAR},
+      VBDEF1 = #{vbdef1,jdbcType=VARCHAR},
+      VBDEF2 = #{vbdef2,jdbcType=VARCHAR},
+      VBDEF3 = #{vbdef3,jdbcType=VARCHAR},
+      VBDEF4 = #{vbdef4,jdbcType=VARCHAR},
+      VBDEF5 = #{vbdef5,jdbcType=VARCHAR},
+      VSRCID = #{vsrcid,jdbcType=VARCHAR},
+      VBDEF6 = #{vbdef6,jdbcType=VARCHAR},
+      VSRCBID = #{vsrcbid,jdbcType=VARCHAR},
+      VBDEF7 = #{vbdef7,jdbcType=VARCHAR},
+      VBDEF8 = #{vbdef8,jdbcType=VARCHAR},
+      VBDEF9 = #{vbdef9,jdbcType=VARCHAR},
+      VBDEF10 = #{vbdef10,jdbcType=VARCHAR},
+      ISSYNC = #{issync,jdbcType=DECIMAL},
+      TS = #{ts,jdbcType=VARCHAR},
+      DR = #{dr,jdbcType=DECIMAL},
+      VORDERHID = #{vorderhid,jdbcType=VARCHAR},
+      VORDERBID = #{vorderbid,jdbcType=VARCHAR},
+      MATERIALCODE = #{materialcode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+   <update id="deleteByHeadPrimaryKeys" parameterType="java.util.List" >
+    update SO_SALEOUT_B set DR = 1
+    where HID in 
+     <foreach item="item" collection="ids" separator="," open="(" close=")" index="">    
+          #{item, jdbcType=VARCHAR}    
+        </foreach>  
+  </update>
+</mapper>

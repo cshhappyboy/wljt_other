@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.SaleOutHVOMapper" >
+  <resultMap id="BaseResultMap" type="com.fgc.pojo.SaleOutHVO" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PK_GROUP" property="pkGroup" jdbcType="VARCHAR" />
+    <result column="PK_ORG" property="pkOrg" jdbcType="VARCHAR" />
+    <result column="VBILLTYPE" property="vbilltype" jdbcType="VARCHAR" />
+    <result column="CBILLTYPE" property="cbilltype" jdbcType="VARCHAR" />
+    <result column="VBILLSTATUS" property="vbillstatus" jdbcType="DECIMAL" />
+    <result column="DBILLDATE" property="dbilldate" jdbcType="VARCHAR" />
+    <result column="VBILLCODE" property="vbillcode" jdbcType="VARCHAR" />
+    <result column="NTOTALNUM" property="ntotalnum" jdbcType="DECIMAL" />
+    <result column="SALESMAN" property="salesman" jdbcType="VARCHAR" />
+    <result column="CDEPT" property="cdept" jdbcType="VARCHAR" />
+    <result column="VDEF1" property="vdef1" jdbcType="VARCHAR" />
+    <result column="CWAREHOUSEID" property="cwarehouseid" jdbcType="VARCHAR" />
+    <result column="VDEF2" property="vdef2" jdbcType="VARCHAR" />
+    <result column="VDEF3" property="vdef3" jdbcType="VARCHAR" />
+    <result column="CLIENT" property="client" jdbcType="VARCHAR" />
+    <result column="VDEF4" property="vdef4" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="VDEF5" property="vdef5" jdbcType="VARCHAR" />
+    <result column="VDEF6" property="vdef6" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="VDEF7" property="vdef7" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="VDEF8" property="vdef8" jdbcType="VARCHAR" />
+    <result column="VDEF9" property="vdef9" jdbcType="VARCHAR" />
+    <result column="VDEF10" property="vdef10" jdbcType="VARCHAR" />
+    <result column="BILLMAKER" property="billmaker" jdbcType="VARCHAR" />
+    <result column="BILLMAKETIME" property="billmaketime" jdbcType="VARCHAR" />
+    <result column="MODIFIER" property="modifier" jdbcType="VARCHAR" />
+    <result column="MODIFIEDTIME" property="modifiedtime" jdbcType="VARCHAR" />
+    <result column="APPROVER" property="approver" jdbcType="VARCHAR" />
+    <result column="APPROVETIME" property="approvetime" jdbcType="VARCHAR" />
+    <result column="TS" property="ts" jdbcType="VARCHAR" />
+    <result column="DR" property="dr" jdbcType="DECIMAL" />
+    <result column="ISSYNC" property="issync" jdbcType="DECIMAL" />
+    <result column="VSRCID" property="vsrcid" jdbcType="VARCHAR" />
+    <result column="VSRCCODE" property="vsrccode" jdbcType="VARCHAR" />
+    <result column="EFFECTBILLCODE" property="effectbillcode" jdbcType="VARCHAR" />
+    <result column="VINVOICEBILLCODE" property="vinvoicebillcode" jdbcType="VARCHAR" />
+    <result column="VORDERBILLCODE" property="vorderbillcode" jdbcType="VARCHAR" />
+    <result column="RETURNSALE" property="returnsale" jdbcType="DECIMAL" />
+    <result column="VORDERHID" property="vorderhid" jdbcType="VARCHAR" />
+    <result column="SALETUIHUI" property="saletuihui" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ( ${criterion.condition}
+                  <foreach collection="criterion.value" index="index" item="listItem" open="(" close=")" separator="," >
+                    <if test="(index % 999) == 998"> NULL ) OR ${criterion.condition} (</if>#{listItem}
+                  </foreach>
+                  )
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PK_GROUP, PK_ORG, VBILLTYPE, CBILLTYPE, VBILLSTATUS, DBILLDATE, VBILLCODE, NTOTALNUM, 
+    SALESMAN, CDEPT, VDEF1, CWAREHOUSEID, VDEF2, VDEF3, CLIENT, VDEF4, ADDRESS, VDEF5, 
+    VDEF6, TEL, VDEF7, MEMO, VDEF8, VDEF9, VDEF10, BILLMAKER, BILLMAKETIME, MODIFIER, 
+    MODIFIEDTIME, APPROVER, APPROVETIME, TS, DR, ISSYNC, VSRCID, VSRCCODE, EFFECTBILLCODE, 
+    VINVOICEBILLCODE, VORDERBILLCODE, RETURNSALE, VORDERHID, SALETUIHUI
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fgc.pojo.SaleOutHVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SO_SALEOUT_H
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SO_SALEOUT_H
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SO_SALEOUT_H
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fgc.pojo.SaleOutHVOExample" >
+    delete from SO_SALEOUT_H
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fgc.pojo.SaleOutHVO" >
+    insert into SO_SALEOUT_H (ID, PK_GROUP, PK_ORG, 
+      VBILLTYPE, CBILLTYPE, VBILLSTATUS, 
+      DBILLDATE, VBILLCODE, NTOTALNUM, 
+      SALESMAN, CDEPT, VDEF1, 
+      CWAREHOUSEID, VDEF2, VDEF3, 
+      CLIENT, VDEF4, ADDRESS, 
+      VDEF5, VDEF6, TEL, 
+      VDEF7, MEMO, VDEF8, 
+      VDEF9, VDEF10, BILLMAKER, 
+      BILLMAKETIME, MODIFIER, MODIFIEDTIME, 
+      APPROVER, APPROVETIME, TS, 
+      DR, ISSYNC, VSRCID, 
+      VSRCCODE, EFFECTBILLCODE, VINVOICEBILLCODE, 
+      VORDERBILLCODE, RETURNSALE, VORDERHID, 
+      SALETUIHUI)
+    values (#{id,jdbcType=VARCHAR}, #{pkGroup,jdbcType=VARCHAR}, #{pkOrg,jdbcType=VARCHAR}, 
+      #{vbilltype,jdbcType=VARCHAR}, #{cbilltype,jdbcType=VARCHAR}, #{vbillstatus,jdbcType=DECIMAL}, 
+      #{dbilldate,jdbcType=VARCHAR}, #{vbillcode,jdbcType=VARCHAR}, #{ntotalnum,jdbcType=DECIMAL}, 
+      #{salesman,jdbcType=VARCHAR}, #{cdept,jdbcType=VARCHAR}, #{vdef1,jdbcType=VARCHAR}, 
+      #{cwarehouseid,jdbcType=VARCHAR}, #{vdef2,jdbcType=VARCHAR}, #{vdef3,jdbcType=VARCHAR}, 
+      #{client,jdbcType=VARCHAR}, #{vdef4,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{vdef5,jdbcType=VARCHAR}, #{vdef6,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{vdef7,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{vdef8,jdbcType=VARCHAR}, 
+      #{vdef9,jdbcType=VARCHAR}, #{vdef10,jdbcType=VARCHAR}, #{billmaker,jdbcType=VARCHAR}, 
+      #{billmaketime,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{modifiedtime,jdbcType=VARCHAR}, 
+      #{approver,jdbcType=VARCHAR}, #{approvetime,jdbcType=VARCHAR}, #{ts,jdbcType=VARCHAR}, 
+      #{dr,jdbcType=DECIMAL}, #{issync,jdbcType=DECIMAL}, #{vsrcid,jdbcType=VARCHAR}, 
+      #{vsrccode,jdbcType=VARCHAR}, #{effectbillcode,jdbcType=VARCHAR}, #{vinvoicebillcode,jdbcType=VARCHAR}, 
+      #{vorderbillcode,jdbcType=VARCHAR}, #{returnsale,jdbcType=DECIMAL}, #{vorderhid,jdbcType=VARCHAR}, 
+      #{saletuihui,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fgc.pojo.SaleOutHVO" >
+    insert into SO_SALEOUT_H
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="pkGroup != null" >
+        PK_GROUP,
+      </if>
+      <if test="pkOrg != null" >
+        PK_ORG,
+      </if>
+      <if test="vbilltype != null" >
+        VBILLTYPE,
+      </if>
+      <if test="cbilltype != null" >
+        CBILLTYPE,
+      </if>
+      <if test="vbillstatus != null" >
+        VBILLSTATUS,
+      </if>
+      <if test="dbilldate != null" >
+        DBILLDATE,
+      </if>
+      <if test="vbillcode != null" >
+        VBILLCODE,
+      </if>
+      <if test="ntotalnum != null" >
+        NTOTALNUM,
+      </if>
+      <if test="salesman != null" >
+        SALESMAN,
+      </if>
+      <if test="cdept != null" >
+        CDEPT,
+      </if>
+      <if test="vdef1 != null" >
+        VDEF1,
+      </if>
+      <if test="cwarehouseid != null" >
+        CWAREHOUSEID,
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2,
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3,
+      </if>
+      <if test="client != null" >
+        CLIENT,
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5,
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8,
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9,
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10,
+      </if>
+      <if test="billmaker != null" >
+        BILLMAKER,
+      </if>
+      <if test="billmaketime != null" >
+        BILLMAKETIME,
+      </if>
+      <if test="modifier != null" >
+        MODIFIER,
+      </if>
+      <if test="modifiedtime != null" >
+        MODIFIEDTIME,
+      </if>
+      <if test="approver != null" >
+        APPROVER,
+      </if>
+      <if test="approvetime != null" >
+        APPROVETIME,
+      </if>
+      <if test="ts != null" >
+        TS,
+      </if>
+      <if test="dr != null" >
+        DR,
+      </if>
+      <if test="issync != null" >
+        ISSYNC,
+      </if>
+      <if test="vsrcid != null" >
+        VSRCID,
+      </if>
+      <if test="vsrccode != null" >
+        VSRCCODE,
+      </if>
+      <if test="effectbillcode != null" >
+        EFFECTBILLCODE,
+      </if>
+      <if test="vinvoicebillcode != null" >
+        VINVOICEBILLCODE,
+      </if>
+      <if test="vorderbillcode != null" >
+        VORDERBILLCODE,
+      </if>
+      <if test="returnsale != null" >
+        RETURNSALE,
+      </if>
+      <if test="vorderhid != null" >
+        VORDERHID,
+      </if>
+      <if test="saletuihui != null" >
+        SALETUIHUI,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGroup != null" >
+        #{pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pkOrg != null" >
+        #{pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="vbilltype != null" >
+        #{vbilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="cbilltype != null" >
+        #{cbilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="vbillstatus != null" >
+        #{vbillstatus,jdbcType=DECIMAL},
+      </if>
+      <if test="dbilldate != null" >
+        #{dbilldate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbillcode != null" >
+        #{vbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ntotalnum != null" >
+        #{ntotalnum,jdbcType=DECIMAL},
+      </if>
+      <if test="salesman != null" >
+        #{salesman,jdbcType=VARCHAR},
+      </if>
+      <if test="cdept != null" >
+        #{cdept,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef1 != null" >
+        #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="cwarehouseid != null" >
+        #{cwarehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="client != null" >
+        #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef4 != null" >
+        #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef6 != null" >
+        #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="billmaker != null" >
+        #{billmaker,jdbcType=VARCHAR},
+      </if>
+      <if test="billmaketime != null" >
+        #{billmaketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtime != null" >
+        #{modifiedtime,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvetime != null" >
+        #{approvetime,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="issync != null" >
+        #{issync,jdbcType=DECIMAL},
+      </if>
+      <if test="vsrcid != null" >
+        #{vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrccode != null" >
+        #{vsrccode,jdbcType=VARCHAR},
+      </if>
+      <if test="effectbillcode != null" >
+        #{effectbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vinvoicebillcode != null" >
+        #{vinvoicebillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vorderbillcode != null" >
+        #{vorderbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnsale != null" >
+        #{returnsale,jdbcType=DECIMAL},
+      </if>
+      <if test="vorderhid != null" >
+        #{vorderhid,jdbcType=VARCHAR},
+      </if>
+      <if test="saletuihui != null" >
+        #{saletuihui,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fgc.pojo.SaleOutHVOExample" resultType="java.lang.Integer" >
+    select count(*) from SO_SALEOUT_H
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SO_SALEOUT_H
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkGroup != null" >
+        PK_GROUP = #{record.pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkOrg != null" >
+        PK_ORG = #{record.pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbilltype != null" >
+        VBILLTYPE = #{record.vbilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbilltype != null" >
+        CBILLTYPE = #{record.cbilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbillstatus != null" >
+        VBILLSTATUS = #{record.vbillstatus,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dbilldate != null" >
+        DBILLDATE = #{record.dbilldate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbillcode != null" >
+        VBILLCODE = #{record.vbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ntotalnum != null" >
+        NTOTALNUM = #{record.ntotalnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salesman != null" >
+        SALESMAN = #{record.salesman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cdept != null" >
+        CDEPT = #{record.cdept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef1 != null" >
+        VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cwarehouseid != null" >
+        CWAREHOUSEID = #{record.cwarehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef2 != null" >
+        VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef3 != null" >
+        VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.client != null" >
+        CLIENT = #{record.client,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef4 != null" >
+        VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef5 != null" >
+        VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef6 != null" >
+        VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        TEL = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef7 != null" >
+        VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef8 != null" >
+        VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef9 != null" >
+        VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef10 != null" >
+        VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billmaker != null" >
+        BILLMAKER = #{record.billmaker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billmaketime != null" >
+        BILLMAKETIME = #{record.billmaketime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifier != null" >
+        MODIFIER = #{record.modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifiedtime != null" >
+        MODIFIEDTIME = #{record.modifiedtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approver != null" >
+        APPROVER = #{record.approver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvetime != null" >
+        APPROVETIME = #{record.approvetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ts != null" >
+        TS = #{record.ts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dr != null" >
+        DR = #{record.dr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.issync != null" >
+        ISSYNC = #{record.issync,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vsrcid != null" >
+        VSRCID = #{record.vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vsrccode != null" >
+        VSRCCODE = #{record.vsrccode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effectbillcode != null" >
+        EFFECTBILLCODE = #{record.effectbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vinvoicebillcode != null" >
+        VINVOICEBILLCODE = #{record.vinvoicebillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vorderbillcode != null" >
+        VORDERBILLCODE = #{record.vorderbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnsale != null" >
+        RETURNSALE = #{record.returnsale,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vorderhid != null" >
+        VORDERHID = #{record.vorderhid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saletuihui != null" >
+        SALETUIHUI = #{record.saletuihui,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SO_SALEOUT_H
+    set ID = #{record.id,jdbcType=VARCHAR},
+      PK_GROUP = #{record.pkGroup,jdbcType=VARCHAR},
+      PK_ORG = #{record.pkOrg,jdbcType=VARCHAR},
+      VBILLTYPE = #{record.vbilltype,jdbcType=VARCHAR},
+      CBILLTYPE = #{record.cbilltype,jdbcType=VARCHAR},
+      VBILLSTATUS = #{record.vbillstatus,jdbcType=DECIMAL},
+      DBILLDATE = #{record.dbilldate,jdbcType=VARCHAR},
+      VBILLCODE = #{record.vbillcode,jdbcType=VARCHAR},
+      NTOTALNUM = #{record.ntotalnum,jdbcType=DECIMAL},
+      SALESMAN = #{record.salesman,jdbcType=VARCHAR},
+      CDEPT = #{record.cdept,jdbcType=VARCHAR},
+      VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      CWAREHOUSEID = #{record.cwarehouseid,jdbcType=VARCHAR},
+      VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      CLIENT = #{record.client,jdbcType=VARCHAR},
+      VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      TEL = #{record.tel,jdbcType=VARCHAR},
+      VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      MEMO = #{record.memo,jdbcType=VARCHAR},
+      VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      BILLMAKER = #{record.billmaker,jdbcType=VARCHAR},
+      BILLMAKETIME = #{record.billmaketime,jdbcType=VARCHAR},
+      MODIFIER = #{record.modifier,jdbcType=VARCHAR},
+      MODIFIEDTIME = #{record.modifiedtime,jdbcType=VARCHAR},
+      APPROVER = #{record.approver,jdbcType=VARCHAR},
+      APPROVETIME = #{record.approvetime,jdbcType=VARCHAR},
+      TS = #{record.ts,jdbcType=VARCHAR},
+      DR = #{record.dr,jdbcType=DECIMAL},
+      ISSYNC = #{record.issync,jdbcType=DECIMAL},
+      VSRCID = #{record.vsrcid,jdbcType=VARCHAR},
+      VSRCCODE = #{record.vsrccode,jdbcType=VARCHAR},
+      EFFECTBILLCODE = #{record.effectbillcode,jdbcType=VARCHAR},
+      VINVOICEBILLCODE = #{record.vinvoicebillcode,jdbcType=VARCHAR},
+      VORDERBILLCODE = #{record.vorderbillcode,jdbcType=VARCHAR},
+      RETURNSALE = #{record.returnsale,jdbcType=DECIMAL},
+      VORDERHID = #{record.vorderhid,jdbcType=VARCHAR},
+      SALETUIHUI = #{record.saletuihui,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.SaleOutHVO" >
+    update SO_SALEOUT_H
+    <set >
+      <if test="pkGroup != null" >
+        PK_GROUP = #{pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pkOrg != null" >
+        PK_ORG = #{pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="vbilltype != null" >
+        VBILLTYPE = #{vbilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="cbilltype != null" >
+        CBILLTYPE = #{cbilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="vbillstatus != null" >
+        VBILLSTATUS = #{vbillstatus,jdbcType=DECIMAL},
+      </if>
+      <if test="dbilldate != null" >
+        DBILLDATE = #{dbilldate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbillcode != null" >
+        VBILLCODE = #{vbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ntotalnum != null" >
+        NTOTALNUM = #{ntotalnum,jdbcType=DECIMAL},
+      </if>
+      <if test="salesman != null" >
+        SALESMAN = #{salesman,jdbcType=VARCHAR},
+      </if>
+      <if test="cdept != null" >
+        CDEPT = #{cdept,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef1 != null" >
+        VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="cwarehouseid != null" >
+        CWAREHOUSEID = #{cwarehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="client != null" >
+        CLIENT = #{client,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="billmaker != null" >
+        BILLMAKER = #{billmaker,jdbcType=VARCHAR},
+      </if>
+      <if test="billmaketime != null" >
+        BILLMAKETIME = #{billmaketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null" >
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtime != null" >
+        MODIFIEDTIME = #{modifiedtime,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        APPROVER = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvetime != null" >
+        APPROVETIME = #{approvetime,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        TS = #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        DR = #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="issync != null" >
+        ISSYNC = #{issync,jdbcType=DECIMAL},
+      </if>
+      <if test="vsrcid != null" >
+        VSRCID = #{vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrccode != null" >
+        VSRCCODE = #{vsrccode,jdbcType=VARCHAR},
+      </if>
+      <if test="effectbillcode != null" >
+        EFFECTBILLCODE = #{effectbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vinvoicebillcode != null" >
+        VINVOICEBILLCODE = #{vinvoicebillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vorderbillcode != null" >
+        VORDERBILLCODE = #{vorderbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnsale != null" >
+        RETURNSALE = #{returnsale,jdbcType=DECIMAL},
+      </if>
+      <if test="vorderhid != null" >
+        VORDERHID = #{vorderhid,jdbcType=VARCHAR},
+      </if>
+      <if test="saletuihui != null" >
+        SALETUIHUI = #{saletuihui,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fgc.pojo.SaleOutHVO" >
+    update SO_SALEOUT_H
+    set PK_GROUP = #{pkGroup,jdbcType=VARCHAR},
+      PK_ORG = #{pkOrg,jdbcType=VARCHAR},
+      VBILLTYPE = #{vbilltype,jdbcType=VARCHAR},
+      CBILLTYPE = #{cbilltype,jdbcType=VARCHAR},
+      VBILLSTATUS = #{vbillstatus,jdbcType=DECIMAL},
+      DBILLDATE = #{dbilldate,jdbcType=VARCHAR},
+      VBILLCODE = #{vbillcode,jdbcType=VARCHAR},
+      NTOTALNUM = #{ntotalnum,jdbcType=DECIMAL},
+      SALESMAN = #{salesman,jdbcType=VARCHAR},
+      CDEPT = #{cdept,jdbcType=VARCHAR},
+      VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      CWAREHOUSEID = #{cwarehouseid,jdbcType=VARCHAR},
+      VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      CLIENT = #{client,jdbcType=VARCHAR},
+      VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      BILLMAKER = #{billmaker,jdbcType=VARCHAR},
+      BILLMAKETIME = #{billmaketime,jdbcType=VARCHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFIEDTIME = #{modifiedtime,jdbcType=VARCHAR},
+      APPROVER = #{approver,jdbcType=VARCHAR},
+      APPROVETIME = #{approvetime,jdbcType=VARCHAR},
+      TS = #{ts,jdbcType=VARCHAR},
+      DR = #{dr,jdbcType=DECIMAL},
+      ISSYNC = #{issync,jdbcType=DECIMAL},
+      VSRCID = #{vsrcid,jdbcType=VARCHAR},
+      VSRCCODE = #{vsrccode,jdbcType=VARCHAR},
+      EFFECTBILLCODE = #{effectbillcode,jdbcType=VARCHAR},
+      VINVOICEBILLCODE = #{vinvoicebillcode,jdbcType=VARCHAR},
+      VORDERBILLCODE = #{vorderbillcode,jdbcType=VARCHAR},
+      RETURNSALE = #{returnsale,jdbcType=DECIMAL},
+      VORDERHID = #{vorderhid,jdbcType=VARCHAR},
+      SALETUIHUI = #{saletuihui,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="deleteByPrimaryKeys" parameterType="java.util.List" >
+    update SO_SALEOUT_H set DR = 1
+    where ID in 
+     <foreach item="item" collection="ids" separator="," open="(" close=")" index="">    
+          #{item, jdbcType=VARCHAR}    
+        </foreach>  
+  </update>
+</mapper>

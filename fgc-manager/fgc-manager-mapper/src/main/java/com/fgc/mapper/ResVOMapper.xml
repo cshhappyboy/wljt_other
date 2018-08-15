@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.ResVOMapper" >
+  <resultMap id="BaseResultMap" type="com.fgc.pojo.ResVO" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="SEQ" property="seq" jdbcType="DECIMAL" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="RESTYPE_ID" property="restypeId" jdbcType="VARCHAR" />
+    <result column="TS" property="ts" jdbcType="VARCHAR" />
+    <result column="DR" property="dr" jdbcType="VARCHAR" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="FNAME" property="fname" jdbcType="VARCHAR" />
+    <result column="MNAME" property="mname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ICON, NAME, REMARK, SEQ, URL, PID, RESTYPE_ID, TS, DR, ENAME, FNAME, MNAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fgc.pojo.ResVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from FGC_BD_RES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from FGC_BD_RES
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from FGC_BD_RES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fgc.pojo.ResVOExample" >
+    delete from FGC_BD_RES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fgc.pojo.ResVO" >
+    insert into FGC_BD_RES (ID, ICON, NAME, 
+      REMARK, SEQ, URL, PID, 
+      RESTYPE_ID, TS, DR, 
+      ENAME, FNAME, MNAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{seq,jdbcType=DECIMAL}, #{url,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{restypeId,jdbcType=VARCHAR}, #{ts,jdbcType=VARCHAR}, #{dr,jdbcType=VARCHAR}, 
+      #{ename,jdbcType=VARCHAR}, #{fname,jdbcType=VARCHAR}, #{mname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fgc.pojo.ResVO" >
+    insert into FGC_BD_RES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="seq != null" >
+        SEQ,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="restypeId != null" >
+        RESTYPE_ID,
+      </if>
+      <if test="ts != null" >
+        TS,
+      </if>
+      <if test="dr != null" >
+        DR,
+      </if>
+      <if test="ename != null" >
+        ENAME,
+      </if>
+      <if test="fname != null" >
+        FNAME,
+      </if>
+      <if test="mname != null" >
+        MNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="restypeId != null" >
+        #{restypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        #{dr,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="mname != null" >
+        #{mname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fgc.pojo.ResVOExample" resultType="java.lang.Integer" >
+    select count(*) from FGC_BD_RES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update FGC_BD_RES
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null" >
+        ICON = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seq != null" >
+        SEQ = #{record.seq,jdbcType=DECIMAL},
+      </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        PID = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.restypeId != null" >
+        RESTYPE_ID = #{record.restypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ts != null" >
+        TS = #{record.ts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dr != null" >
+        DR = #{record.dr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ename != null" >
+        ENAME = #{record.ename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fname != null" >
+        FNAME = #{record.fname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mname != null" >
+        MNAME = #{record.mname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update FGC_BD_RES
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ICON = #{record.icon,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      SEQ = #{record.seq,jdbcType=DECIMAL},
+      URL = #{record.url,jdbcType=VARCHAR},
+      PID = #{record.pid,jdbcType=VARCHAR},
+      RESTYPE_ID = #{record.restypeId,jdbcType=VARCHAR},
+      TS = #{record.ts,jdbcType=VARCHAR},
+      DR = #{record.dr,jdbcType=VARCHAR},
+      ENAME = #{record.ename,jdbcType=VARCHAR},
+      FNAME = #{record.fname,jdbcType=VARCHAR},
+      MNAME = #{record.mname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.ResVO" >
+    update FGC_BD_RES
+    <set >
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        SEQ = #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="restypeId != null" >
+        RESTYPE_ID = #{restypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        TS = #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        DR = #{dr,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        ENAME = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        FNAME = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="mname != null" >
+        MNAME = #{mname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fgc.pojo.ResVO" >
+    update FGC_BD_RES
+    set ICON = #{icon,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=DECIMAL},
+      URL = #{url,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR},
+      RESTYPE_ID = #{restypeId,jdbcType=VARCHAR},
+      TS = #{ts,jdbcType=VARCHAR},
+      DR = #{dr,jdbcType=VARCHAR},
+      ENAME = #{ename,jdbcType=VARCHAR},
+      FNAME = #{fname,jdbcType=VARCHAR},
+      MNAME = #{mname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="queryResIDByUserId" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select DISTINCT RR.RES_ID
+		from FGC_USER_ROLE UR
+		join FGC_ROLE_RES RR
+		on UR.ROLE_ID = RR.ROLE_ID
+		where UR.USER_ID = #{cuserid,jdbcType=VARCHAR}
+	</select>
+</mapper>

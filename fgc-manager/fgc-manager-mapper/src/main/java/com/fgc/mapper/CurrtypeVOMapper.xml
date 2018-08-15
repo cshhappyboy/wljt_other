@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.CurrtypeVOMapper" >
+  <resultMap id="BaseResultMap" type="com.fgc.pojo.CurrtypeVO" >
+    <id column="PKCURRTYPE" property="pkcurrtype" jdbcType="VARCHAR" />
+    <result column="PKORG" property="pkorg" jdbcType="VARCHAR" />
+    <result column="VDEF1" property="vdef1" jdbcType="VARCHAR" />
+    <result column="VDEF2" property="vdef2" jdbcType="VARCHAR" />
+    <result column="VDEF3" property="vdef3" jdbcType="VARCHAR" />
+    <result column="VDEF4" property="vdef4" jdbcType="VARCHAR" />
+    <result column="VDEF5" property="vdef5" jdbcType="VARCHAR" />
+    <result column="VDEF6" property="vdef6" jdbcType="VARCHAR" />
+    <result column="VDEF7" property="vdef7" jdbcType="VARCHAR" />
+    <result column="VDEF8" property="vdef8" jdbcType="VARCHAR" />
+    <result column="VDEF9" property="vdef9" jdbcType="VARCHAR" />
+    <result column="VDEF10" property="vdef10" jdbcType="VARCHAR" />
+    <result column="VDEF11" property="vdef11" jdbcType="VARCHAR" />
+    <result column="VDEF12" property="vdef12" jdbcType="VARCHAR" />
+    <result column="VDEF13" property="vdef13" jdbcType="VARCHAR" />
+    <result column="VDEF14" property="vdef14" jdbcType="VARCHAR" />
+    <result column="VDEF15" property="vdef15" jdbcType="VARCHAR" />
+    <result column="VDEF16" property="vdef16" jdbcType="VARCHAR" />
+    <result column="VDEF17" property="vdef17" jdbcType="VARCHAR" />
+    <result column="VDEF18" property="vdef18" jdbcType="VARCHAR" />
+    <result column="VDEF19" property="vdef19" jdbcType="VARCHAR" />
+    <result column="VDEF20" property="vdef20" jdbcType="VARCHAR" />
+    <result column="DR" property="dr" jdbcType="DECIMAL" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CURRTYPESIGN" property="currtypesign" jdbcType="VARCHAR" />
+    <result column="CURRDIGIT" property="currdigit" jdbcType="DECIMAL" />
+    <result column="UNITCURRDIGIT" property="unitcurrdigit" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PKCURRTYPE, PKORG, VDEF1, VDEF2, VDEF3, VDEF4, VDEF5, VDEF6, VDEF7, VDEF8, VDEF9, 
+    VDEF10, VDEF11, VDEF12, VDEF13, VDEF14, VDEF15, VDEF16, VDEF17, VDEF18, VDEF19, VDEF20, 
+    DR, CODE, NAME, CURRTYPESIGN, CURRDIGIT, UNITCURRDIGIT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fgc.pojo.CurrtypeVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LX_BD_CURRTYPE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LX_BD_CURRTYPE
+    where PKCURRTYPE = #{pkcurrtype,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LX_BD_CURRTYPE
+    where PKCURRTYPE = #{pkcurrtype,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fgc.pojo.CurrtypeVOExample" >
+    delete from LX_BD_CURRTYPE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fgc.pojo.CurrtypeVO" >
+    insert into LX_BD_CURRTYPE (PKCURRTYPE, PKORG, VDEF1, 
+      VDEF2, VDEF3, VDEF4, 
+      VDEF5, VDEF6, VDEF7, 
+      VDEF8, VDEF9, VDEF10, 
+      VDEF11, VDEF12, VDEF13, 
+      VDEF14, VDEF15, VDEF16, 
+      VDEF17, VDEF18, VDEF19, 
+      VDEF20, DR, CODE, NAME, 
+      CURRTYPESIGN, CURRDIGIT, UNITCURRDIGIT
+      )
+    values (#{pkcurrtype,jdbcType=VARCHAR}, #{pkorg,jdbcType=VARCHAR}, #{vdef1,jdbcType=VARCHAR}, 
+      #{vdef2,jdbcType=VARCHAR}, #{vdef3,jdbcType=VARCHAR}, #{vdef4,jdbcType=VARCHAR}, 
+      #{vdef5,jdbcType=VARCHAR}, #{vdef6,jdbcType=VARCHAR}, #{vdef7,jdbcType=VARCHAR}, 
+      #{vdef8,jdbcType=VARCHAR}, #{vdef9,jdbcType=VARCHAR}, #{vdef10,jdbcType=VARCHAR}, 
+      #{vdef11,jdbcType=VARCHAR}, #{vdef12,jdbcType=VARCHAR}, #{vdef13,jdbcType=VARCHAR}, 
+      #{vdef14,jdbcType=VARCHAR}, #{vdef15,jdbcType=VARCHAR}, #{vdef16,jdbcType=VARCHAR}, 
+      #{vdef17,jdbcType=VARCHAR}, #{vdef18,jdbcType=VARCHAR}, #{vdef19,jdbcType=VARCHAR}, 
+      #{vdef20,jdbcType=VARCHAR}, #{dr,jdbcType=DECIMAL}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{currtypesign,jdbcType=VARCHAR}, #{currdigit,jdbcType=DECIMAL}, #{unitcurrdigit,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fgc.pojo.CurrtypeVO" >
+    insert into LX_BD_CURRTYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkcurrtype != null" >
+        PKCURRTYPE,
+      </if>
+      <if test="pkorg != null" >
+        PKORG,
+      </if>
+      <if test="vdef1 != null" >
+        VDEF1,
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2,
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3,
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4,
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5,
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6,
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7,
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8,
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9,
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10,
+      </if>
+      <if test="vdef11 != null" >
+        VDEF11,
+      </if>
+      <if test="vdef12 != null" >
+        VDEF12,
+      </if>
+      <if test="vdef13 != null" >
+        VDEF13,
+      </if>
+      <if test="vdef14 != null" >
+        VDEF14,
+      </if>
+      <if test="vdef15 != null" >
+        VDEF15,
+      </if>
+      <if test="vdef16 != null" >
+        VDEF16,
+      </if>
+      <if test="vdef17 != null" >
+        VDEF17,
+      </if>
+      <if test="vdef18 != null" >
+        VDEF18,
+      </if>
+      <if test="vdef19 != null" >
+        VDEF19,
+      </if>
+      <if test="vdef20 != null" >
+        VDEF20,
+      </if>
+      <if test="dr != null" >
+        DR,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="currtypesign != null" >
+        CURRTYPESIGN,
+      </if>
+      <if test="currdigit != null" >
+        CURRDIGIT,
+      </if>
+      <if test="unitcurrdigit != null" >
+        UNITCURRDIGIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkcurrtype != null" >
+        #{pkcurrtype,jdbcType=VARCHAR},
+      </if>
+      <if test="pkorg != null" >
+        #{pkorg,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef1 != null" >
+        #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef4 != null" >
+        #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef6 != null" >
+        #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef11 != null" >
+        #{vdef11,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef12 != null" >
+        #{vdef12,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef13 != null" >
+        #{vdef13,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef14 != null" >
+        #{vdef14,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef15 != null" >
+        #{vdef15,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef16 != null" >
+        #{vdef16,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef17 != null" >
+        #{vdef17,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef18 != null" >
+        #{vdef18,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef19 != null" >
+        #{vdef19,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef20 != null" >
+        #{vdef20,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="currtypesign != null" >
+        #{currtypesign,jdbcType=VARCHAR},
+      </if>
+      <if test="currdigit != null" >
+        #{currdigit,jdbcType=DECIMAL},
+      </if>
+      <if test="unitcurrdigit != null" >
+        #{unitcurrdigit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fgc.pojo.CurrtypeVOExample" resultType="java.lang.Integer" >
+    select count(*) from LX_BD_CURRTYPE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update LX_BD_CURRTYPE
+    <set >
+      <if test="record.pkcurrtype != null" >
+        PKCURRTYPE = #{record.pkcurrtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkorg != null" >
+        PKORG = #{record.pkorg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef1 != null" >
+        VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef2 != null" >
+        VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef3 != null" >
+        VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef4 != null" >
+        VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef5 != null" >
+        VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef6 != null" >
+        VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef7 != null" >
+        VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef8 != null" >
+        VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef9 != null" >
+        VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef10 != null" >
+        VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef11 != null" >
+        VDEF11 = #{record.vdef11,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef12 != null" >
+        VDEF12 = #{record.vdef12,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef13 != null" >
+        VDEF13 = #{record.vdef13,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef14 != null" >
+        VDEF14 = #{record.vdef14,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef15 != null" >
+        VDEF15 = #{record.vdef15,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef16 != null" >
+        VDEF16 = #{record.vdef16,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef17 != null" >
+        VDEF17 = #{record.vdef17,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef18 != null" >
+        VDEF18 = #{record.vdef18,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef19 != null" >
+        VDEF19 = #{record.vdef19,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef20 != null" >
+        VDEF20 = #{record.vdef20,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dr != null" >
+        DR = #{record.dr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.code != null" >
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currtypesign != null" >
+        CURRTYPESIGN = #{record.currtypesign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currdigit != null" >
+        CURRDIGIT = #{record.currdigit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unitcurrdigit != null" >
+        UNITCURRDIGIT = #{record.unitcurrdigit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update LX_BD_CURRTYPE
+    set PKCURRTYPE = #{record.pkcurrtype,jdbcType=VARCHAR},
+      PKORG = #{record.pkorg,jdbcType=VARCHAR},
+      VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      VDEF11 = #{record.vdef11,jdbcType=VARCHAR},
+      VDEF12 = #{record.vdef12,jdbcType=VARCHAR},
+      VDEF13 = #{record.vdef13,jdbcType=VARCHAR},
+      VDEF14 = #{record.vdef14,jdbcType=VARCHAR},
+      VDEF15 = #{record.vdef15,jdbcType=VARCHAR},
+      VDEF16 = #{record.vdef16,jdbcType=VARCHAR},
+      VDEF17 = #{record.vdef17,jdbcType=VARCHAR},
+      VDEF18 = #{record.vdef18,jdbcType=VARCHAR},
+      VDEF19 = #{record.vdef19,jdbcType=VARCHAR},
+      VDEF20 = #{record.vdef20,jdbcType=VARCHAR},
+      DR = #{record.dr,jdbcType=DECIMAL},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      CURRTYPESIGN = #{record.currtypesign,jdbcType=VARCHAR},
+      CURRDIGIT = #{record.currdigit,jdbcType=DECIMAL},
+      UNITCURRDIGIT = #{record.unitcurrdigit,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.CurrtypeVO" >
+    update LX_BD_CURRTYPE
+    <set >
+      <if test="pkorg != null" >
+        PKORG = #{pkorg,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef1 != null" >
+        VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef11 != null" >
+        VDEF11 = #{vdef11,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef12 != null" >
+        VDEF12 = #{vdef12,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef13 != null" >
+        VDEF13 = #{vdef13,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef14 != null" >
+        VDEF14 = #{vdef14,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef15 != null" >
+        VDEF15 = #{vdef15,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef16 != null" >
+        VDEF16 = #{vdef16,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef17 != null" >
+        VDEF17 = #{vdef17,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef18 != null" >
+        VDEF18 = #{vdef18,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef19 != null" >
+        VDEF19 = #{vdef19,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef20 != null" >
+        VDEF20 = #{vdef20,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        DR = #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="currtypesign != null" >
+        CURRTYPESIGN = #{currtypesign,jdbcType=VARCHAR},
+      </if>
+      <if test="currdigit != null" >
+        CURRDIGIT = #{currdigit,jdbcType=DECIMAL},
+      </if>
+      <if test="unitcurrdigit != null" >
+        UNITCURRDIGIT = #{unitcurrdigit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PKCURRTYPE = #{pkcurrtype,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fgc.pojo.CurrtypeVO" >
+    update LX_BD_CURRTYPE
+    set PKORG = #{pkorg,jdbcType=VARCHAR},
+      VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      VDEF11 = #{vdef11,jdbcType=VARCHAR},
+      VDEF12 = #{vdef12,jdbcType=VARCHAR},
+      VDEF13 = #{vdef13,jdbcType=VARCHAR},
+      VDEF14 = #{vdef14,jdbcType=VARCHAR},
+      VDEF15 = #{vdef15,jdbcType=VARCHAR},
+      VDEF16 = #{vdef16,jdbcType=VARCHAR},
+      VDEF17 = #{vdef17,jdbcType=VARCHAR},
+      VDEF18 = #{vdef18,jdbcType=VARCHAR},
+      VDEF19 = #{vdef19,jdbcType=VARCHAR},
+      VDEF20 = #{vdef20,jdbcType=VARCHAR},
+      DR = #{dr,jdbcType=DECIMAL},
+      CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CURRTYPESIGN = #{currtypesign,jdbcType=VARCHAR},
+      CURRDIGIT = #{currdigit,jdbcType=DECIMAL},
+      UNITCURRDIGIT = #{unitcurrdigit,jdbcType=DECIMAL}
+    where PKCURRTYPE = #{pkcurrtype,jdbcType=VARCHAR}
+  </update>
+</mapper>

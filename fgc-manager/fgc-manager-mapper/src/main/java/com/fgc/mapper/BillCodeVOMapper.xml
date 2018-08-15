@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.BillCodeVOMapper">
+	<resultMap id="BaseResultMap" type="com.fgc.pojo.BillCodeVO">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="BILLFLAG" property="billflag" jdbcType="VARCHAR" />
+		<result column="DT" property="dt" jdbcType="VARCHAR" />
+		<result column="FLOW" property="flow" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		ID, BILLFLAG, DT, FLOW
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.fgc.pojo.BillCodeVOExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from FGC_BILLCODE
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from FGC_BILLCODE
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		FGC_BILLCODE
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.fgc.pojo.BillCodeVOExample">
+		delete from FGC_BILLCODE
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.fgc.pojo.BillCodeVO">
+		insert into FGC_BILLCODE (ID,
+		BILLFLAG, DT,
+		FLOW)
+		values (#{id,jdbcType=VARCHAR},
+		#{billflag,jdbcType=VARCHAR},
+		#{dt,jdbcType=VARCHAR},
+		#{flow,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.fgc.pojo.BillCodeVO">
+		insert into FGC_BILLCODE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="billflag != null">
+				BILLFLAG,
+			</if>
+			<if test="dt != null">
+				DT,
+			</if>
+			<if test="flow != null">
+				FLOW,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="billflag != null">
+				#{billflag,jdbcType=VARCHAR},
+			</if>
+			<if test="dt != null">
+				#{dt,jdbcType=VARCHAR},
+			</if>
+			<if test="flow != null">
+				#{flow,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.fgc.pojo.BillCodeVOExample"
+		resultType="java.lang.Integer">
+		select count(*) from FGC_BILLCODE
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update FGC_BILLCODE
+		<set>
+			<if test="record.id != null">
+				ID = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.billflag != null">
+				BILLFLAG = #{record.billflag,jdbcType=VARCHAR},
+			</if>
+			<if test="record.dt != null">
+				DT = #{record.dt,jdbcType=VARCHAR},
+			</if>
+			<if test="record.flow != null">
+				FLOW = #{record.flow,jdbcType=DECIMAL},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update FGC_BILLCODE
+		set ID = #{record.id,jdbcType=VARCHAR},
+		BILLFLAG =
+		#{record.billflag,jdbcType=VARCHAR},
+		DT =
+		#{record.dt,jdbcType=VARCHAR},
+		FLOW = #{record.flow,jdbcType=DECIMAL}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.BillCodeVO">
+		update FGC_BILLCODE
+		<set>
+			<if test="billflag != null">
+				BILLFLAG = #{billflag,jdbcType=VARCHAR},
+			</if>
+			<if test="dt != null">
+				DT = #{dt,jdbcType=VARCHAR},
+			</if>
+			<if test="flow != null">
+				FLOW = #{flow,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fgc.pojo.BillCodeVO">
+		update
+		FGC_BILLCODE
+		set BILLFLAG = #{billflag,jdbcType=VARCHAR},
+		DT =
+		#{dt,jdbcType=VARCHAR},
+		FLOW = #{flow,jdbcType=DECIMAL}
+		where ID =
+		#{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

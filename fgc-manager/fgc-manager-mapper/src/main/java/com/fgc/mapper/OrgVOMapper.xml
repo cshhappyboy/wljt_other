@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.OrgVOMapper" >
+  <resultMap id="BaseResultMap" type="com.fgc.pojo.OrgVO" >
+    <id column="PKORG" property="pkorg" jdbcType="VARCHAR" />
+    <result column="VDEF1" property="vdef1" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="VDEF2" property="vdef2" jdbcType="VARCHAR" />
+    <result column="VDEF3" property="vdef3" jdbcType="VARCHAR" />
+    <result column="VDEF4" property="vdef4" jdbcType="VARCHAR" />
+    <result column="VDEF5" property="vdef5" jdbcType="VARCHAR" />
+    <result column="VDEF6" property="vdef6" jdbcType="VARCHAR" />
+    <result column="VDEF7" property="vdef7" jdbcType="VARCHAR" />
+    <result column="VDEF8" property="vdef8" jdbcType="VARCHAR" />
+    <result column="VDEF9" property="vdef9" jdbcType="VARCHAR" />
+    <result column="VDEF10" property="vdef10" jdbcType="VARCHAR" />
+    <result column="DR" property="dr" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PKFATHERORG" property="pkfatherorg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PKORG, VDEF1, CODE, VDEF2, VDEF3, VDEF4, VDEF5, VDEF6, VDEF7, VDEF8, VDEF9, VDEF10, 
+    DR, NAME, PKFATHERORG
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fgc.pojo.OrgVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from LX_ORG_ORGS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LX_ORG_ORGS
+    where PKORG = #{pkorg,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LX_ORG_ORGS
+    where PKORG = #{pkorg,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fgc.pojo.OrgVOExample" >
+    delete from LX_ORG_ORGS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fgc.pojo.OrgVO" >
+    insert into LX_ORG_ORGS (PKORG, VDEF1, CODE, 
+      VDEF2, VDEF3, VDEF4, 
+      VDEF5, VDEF6, VDEF7, 
+      VDEF8, VDEF9, VDEF10, 
+      DR, NAME, PKFATHERORG
+      )
+    values (#{pkorg,jdbcType=VARCHAR}, #{vdef1,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{vdef2,jdbcType=VARCHAR}, #{vdef3,jdbcType=VARCHAR}, #{vdef4,jdbcType=VARCHAR}, 
+      #{vdef5,jdbcType=VARCHAR}, #{vdef6,jdbcType=VARCHAR}, #{vdef7,jdbcType=VARCHAR}, 
+      #{vdef8,jdbcType=VARCHAR}, #{vdef9,jdbcType=VARCHAR}, #{vdef10,jdbcType=VARCHAR}, 
+      #{dr,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{pkfatherorg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fgc.pojo.OrgVO" >
+    insert into LX_ORG_ORGS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkorg != null" >
+        PKORG,
+      </if>
+      <if test="vdef1 != null" >
+        VDEF1,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2,
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3,
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4,
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5,
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6,
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7,
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8,
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9,
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10,
+      </if>
+      <if test="dr != null" >
+        DR,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="pkfatherorg != null" >
+        PKFATHERORG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkorg != null" >
+        #{pkorg,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef1 != null" >
+        #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef4 != null" >
+        #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef6 != null" >
+        #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pkfatherorg != null" >
+        #{pkfatherorg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fgc.pojo.OrgVOExample" resultType="java.lang.Integer" >
+    select count(*) from LX_ORG_ORGS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update LX_ORG_ORGS
+    <set >
+      <if test="record.pkorg != null" >
+        PKORG = #{record.pkorg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef1 != null" >
+        VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef2 != null" >
+        VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef3 != null" >
+        VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef4 != null" >
+        VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef5 != null" >
+        VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef6 != null" >
+        VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef7 != null" >
+        VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef8 != null" >
+        VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef9 != null" >
+        VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef10 != null" >
+        VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dr != null" >
+        DR = #{record.dr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkfatherorg != null" >
+        PKFATHERORG = #{record.pkfatherorg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update LX_ORG_ORGS
+    set PKORG = #{record.pkorg,jdbcType=VARCHAR},
+      VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      DR = #{record.dr,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PKFATHERORG = #{record.pkfatherorg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.OrgVO" >
+    update LX_ORG_ORGS
+    <set >
+      <if test="vdef1 != null" >
+        VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        DR = #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pkfatherorg != null" >
+        PKFATHERORG = #{pkfatherorg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PKORG = #{pkorg,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fgc.pojo.OrgVO" >
+    update LX_ORG_ORGS
+    set VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      DR = #{dr,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      PKFATHERORG = #{pkfatherorg,jdbcType=VARCHAR}
+    where PKORG = #{pkorg,jdbcType=VARCHAR}
+  </update>
+</mapper>

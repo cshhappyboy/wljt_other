@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.UploadDocLogsVOMapper" >
+  <resultMap id="BaseResultMap" type="com.fgc.pojo.UploadDocLogsVO" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EXECUTETIME" property="executetime" jdbcType="CHAR" />
+    <result column="VDEF1" property="vdef1" jdbcType="VARCHAR" />
+    <result column="VDEF2" property="vdef2" jdbcType="VARCHAR" />
+    <result column="VDEF3" property="vdef3" jdbcType="VARCHAR" />
+    <result column="UPLOADTIME" property="uploadtime" jdbcType="CHAR" />
+    <result column="VDEF4" property="vdef4" jdbcType="VARCHAR" />
+    <result column="VDEF5" property="vdef5" jdbcType="VARCHAR" />
+    <result column="ISSUCCESS" property="issuccess" jdbcType="CHAR" />
+    <result column="VDEF6" property="vdef6" jdbcType="VARCHAR" />
+    <result column="VDEF7" property="vdef7" jdbcType="VARCHAR" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="VDEF8" property="vdef8" jdbcType="VARCHAR" />
+    <result column="VDEF9" property="vdef9" jdbcType="VARCHAR" />
+    <result column="VDEF10" property="vdef10" jdbcType="VARCHAR" />
+    <result column="UPLOADBILL" property="uploadbill" jdbcType="VARCHAR" />
+    <result column="UPLOADMODE" property="uploadmode" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, EXECUTETIME, VDEF1, VDEF2, VDEF3, UPLOADTIME, VDEF4, VDEF5, ISSUCCESS, VDEF6, 
+    VDEF7, RESULT, VDEF8, VDEF9, VDEF10, UPLOADBILL, UPLOADMODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fgc.pojo.UploadDocLogsVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UPLOAD_DOC_LOGS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UPLOAD_DOC_LOGS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UPLOAD_DOC_LOGS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fgc.pojo.UploadDocLogsVOExample" >
+    delete from UPLOAD_DOC_LOGS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fgc.pojo.UploadDocLogsVO" >
+    insert into UPLOAD_DOC_LOGS (ID, EXECUTETIME, VDEF1, 
+      VDEF2, VDEF3, UPLOADTIME, 
+      VDEF4, VDEF5, ISSUCCESS, 
+      VDEF6, VDEF7, RESULT, 
+      VDEF8, VDEF9, VDEF10, 
+      UPLOADBILL, UPLOADMODE)
+    values (#{id,jdbcType=VARCHAR}, #{executetime,jdbcType=CHAR}, #{vdef1,jdbcType=VARCHAR}, 
+      #{vdef2,jdbcType=VARCHAR}, #{vdef3,jdbcType=VARCHAR}, #{uploadtime,jdbcType=CHAR}, 
+      #{vdef4,jdbcType=VARCHAR}, #{vdef5,jdbcType=VARCHAR}, #{issuccess,jdbcType=CHAR}, 
+      #{vdef6,jdbcType=VARCHAR}, #{vdef7,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, 
+      #{vdef8,jdbcType=VARCHAR}, #{vdef9,jdbcType=VARCHAR}, #{vdef10,jdbcType=VARCHAR}, 
+      #{uploadbill,jdbcType=VARCHAR}, #{uploadmode,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fgc.pojo.UploadDocLogsVO" >
+    insert into UPLOAD_DOC_LOGS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="executetime != null" >
+        EXECUTETIME,
+      </if>
+      <if test="vdef1 != null" >
+        VDEF1,
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2,
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3,
+      </if>
+      <if test="uploadtime != null" >
+        UPLOADTIME,
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4,
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5,
+      </if>
+      <if test="issuccess != null" >
+        ISSUCCESS,
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6,
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8,
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9,
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10,
+      </if>
+      <if test="uploadbill != null" >
+        UPLOADBILL,
+      </if>
+      <if test="uploadmode != null" >
+        UPLOADMODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="executetime != null" >
+        #{executetime,jdbcType=CHAR},
+      </if>
+      <if test="vdef1 != null" >
+        #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=CHAR},
+      </if>
+      <if test="vdef4 != null" >
+        #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="issuccess != null" >
+        #{issuccess,jdbcType=CHAR},
+      </if>
+      <if test="vdef6 != null" >
+        #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadbill != null" >
+        #{uploadbill,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadmode != null" >
+        #{uploadmode,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fgc.pojo.UploadDocLogsVOExample" resultType="java.lang.Integer" >
+    select count(*) from UPLOAD_DOC_LOGS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UPLOAD_DOC_LOGS
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.executetime != null" >
+        EXECUTETIME = #{record.executetime,jdbcType=CHAR},
+      </if>
+      <if test="record.vdef1 != null" >
+        VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef2 != null" >
+        VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef3 != null" >
+        VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadtime != null" >
+        UPLOADTIME = #{record.uploadtime,jdbcType=CHAR},
+      </if>
+      <if test="record.vdef4 != null" >
+        VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef5 != null" >
+        VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issuccess != null" >
+        ISSUCCESS = #{record.issuccess,jdbcType=CHAR},
+      </if>
+      <if test="record.vdef6 != null" >
+        VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef7 != null" >
+        VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.result != null" >
+        RESULT = #{record.result,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef8 != null" >
+        VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef9 != null" >
+        VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdef10 != null" >
+        VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadbill != null" >
+        UPLOADBILL = #{record.uploadbill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadmode != null" >
+        UPLOADMODE = #{record.uploadmode,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UPLOAD_DOC_LOGS
+    set ID = #{record.id,jdbcType=VARCHAR},
+      EXECUTETIME = #{record.executetime,jdbcType=CHAR},
+      VDEF1 = #{record.vdef1,jdbcType=VARCHAR},
+      VDEF2 = #{record.vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{record.vdef3,jdbcType=VARCHAR},
+      UPLOADTIME = #{record.uploadtime,jdbcType=CHAR},
+      VDEF4 = #{record.vdef4,jdbcType=VARCHAR},
+      VDEF5 = #{record.vdef5,jdbcType=VARCHAR},
+      ISSUCCESS = #{record.issuccess,jdbcType=CHAR},
+      VDEF6 = #{record.vdef6,jdbcType=VARCHAR},
+      VDEF7 = #{record.vdef7,jdbcType=VARCHAR},
+      RESULT = #{record.result,jdbcType=VARCHAR},
+      VDEF8 = #{record.vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{record.vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{record.vdef10,jdbcType=VARCHAR},
+      UPLOADBILL = #{record.uploadbill,jdbcType=VARCHAR},
+      UPLOADMODE = #{record.uploadmode,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.UploadDocLogsVO" >
+    update UPLOAD_DOC_LOGS
+    <set >
+      <if test="executetime != null" >
+        EXECUTETIME = #{executetime,jdbcType=CHAR},
+      </if>
+      <if test="vdef1 != null" >
+        VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef2 != null" >
+        VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef3 != null" >
+        VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        UPLOADTIME = #{uploadtime,jdbcType=CHAR},
+      </if>
+      <if test="vdef4 != null" >
+        VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef5 != null" >
+        VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="issuccess != null" >
+        ISSUCCESS = #{issuccess,jdbcType=CHAR},
+      </if>
+      <if test="vdef6 != null" >
+        VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef7 != null" >
+        VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef8 != null" >
+        VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef9 != null" >
+        VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vdef10 != null" >
+        VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadbill != null" >
+        UPLOADBILL = #{uploadbill,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadmode != null" >
+        UPLOADMODE = #{uploadmode,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fgc.pojo.UploadDocLogsVO" >
+    update UPLOAD_DOC_LOGS
+    set EXECUTETIME = #{executetime,jdbcType=CHAR},
+      VDEF1 = #{vdef1,jdbcType=VARCHAR},
+      VDEF2 = #{vdef2,jdbcType=VARCHAR},
+      VDEF3 = #{vdef3,jdbcType=VARCHAR},
+      UPLOADTIME = #{uploadtime,jdbcType=CHAR},
+      VDEF4 = #{vdef4,jdbcType=VARCHAR},
+      VDEF5 = #{vdef5,jdbcType=VARCHAR},
+      ISSUCCESS = #{issuccess,jdbcType=CHAR},
+      VDEF6 = #{vdef6,jdbcType=VARCHAR},
+      VDEF7 = #{vdef7,jdbcType=VARCHAR},
+      RESULT = #{result,jdbcType=VARCHAR},
+      VDEF8 = #{vdef8,jdbcType=VARCHAR},
+      VDEF9 = #{vdef9,jdbcType=VARCHAR},
+      VDEF10 = #{vdef10,jdbcType=VARCHAR},
+      UPLOADBILL = #{uploadbill,jdbcType=VARCHAR},
+      UPLOADMODE = #{uploadmode,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgc.mapper.OrderBVOMapper" >
+  <resultMap id="BaseResultMap" type="com.fgc.pojo.OrderBVO" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="HID" property="hid" jdbcType="VARCHAR" />
+    <result column="PK_GROUP" property="pkGroup" jdbcType="VARCHAR" />
+    <result column="PK_ORG" property="pkOrg" jdbcType="VARCHAR" />
+    <result column="VROWNUM" property="vrownum" jdbcType="VARCHAR" />
+    <result column="CMATERIAL" property="cmaterial" jdbcType="VARCHAR" />
+    <result column="MATERIALNAME" property="materialname" jdbcType="VARCHAR" />
+    <result column="MATERIALSPEC" property="materialspec" jdbcType="VARCHAR" />
+    <result column="MATERIALTYPE" property="materialtype" jdbcType="VARCHAR" />
+    <result column="CASTUNITID" property="castunitid" jdbcType="VARCHAR" />
+    <result column="NASTNUM" property="nastnum" jdbcType="DECIMAL" />
+    <result column="NPRICE" property="nprice" jdbcType="DECIMAL" />
+    <result column="NMNY" property="nmny" jdbcType="DECIMAL" />
+    <result column="SIZECODE" property="sizecode" jdbcType="VARCHAR" />
+    <result column="DELWAREHOUSE" property="delwarehouse" jdbcType="VARCHAR" />
+    <result column="NEXCHANGERATE" property="nexchangerate" jdbcType="VARCHAR" />
+    <result column="VBDEF1" property="vbdef1" jdbcType="VARCHAR" />
+    <result column="VBDEF2" property="vbdef2" jdbcType="VARCHAR" />
+    <result column="VBDEF3" property="vbdef3" jdbcType="VARCHAR" />
+    <result column="VBDEF4" property="vbdef4" jdbcType="VARCHAR" />
+    <result column="VBDEF5" property="vbdef5" jdbcType="VARCHAR" />
+    <result column="VBDEF6" property="vbdef6" jdbcType="VARCHAR" />
+    <result column="ISSYNC" property="issync" jdbcType="DECIMAL" />
+    <result column="VSRCID" property="vsrcid" jdbcType="VARCHAR" />
+    <result column="VBDEF7" property="vbdef7" jdbcType="VARCHAR" />
+    <result column="VSRCBID" property="vsrcbid" jdbcType="VARCHAR" />
+    <result column="VBDEF8" property="vbdef8" jdbcType="VARCHAR" />
+    <result column="VBDEF9" property="vbdef9" jdbcType="VARCHAR" />
+    <result column="VBDEF10" property="vbdef10" jdbcType="VARCHAR" />
+    <result column="TS" property="ts" jdbcType="VARCHAR" />
+    <result column="DR" property="dr" jdbcType="DECIMAL" />
+    <result column="CSALEUNITID" property="csaleunitid" jdbcType="VARCHAR" />
+    <result column="VUNITRATIO" property="vunitratio" jdbcType="VARCHAR" />
+    <result column="SALENUM" property="salenum" jdbcType="DECIMAL" />
+    <result column="NSALEPRICE" property="nsaleprice" jdbcType="DECIMAL" />
+    <result column="NINVOICENUM" property="ninvoicenum" jdbcType="DECIMAL" />
+    <result column="NINVOICESALENUM" property="ninvoicesalenum" jdbcType="DECIMAL" />
+    <result column="NINVOICEMNY" property="ninvoicemny" jdbcType="DECIMAL" />
+    <result column="NINNUM" property="ninnum" jdbcType="DECIMAL" />
+    <result column="NINFONUM" property="ninfonum" jdbcType="DECIMAL" />
+    <result column="NOUTNUM" property="noutnum" jdbcType="DECIMAL" />
+    <result column="NRETURNNUM" property="nreturnnum" jdbcType="DECIMAL" />
+    <result column="GIFT" property="gift" jdbcType="DECIMAL" />
+    <result column="SERVICES" property="services" jdbcType="DECIMAL" />
+    <result column="NTHISINFONUM" property="nthisinfonum" jdbcType="DECIMAL" />
+    <result column="CUNITID" property="cunitid" jdbcType="VARCHAR" />
+    <result column="NNUM" property="nnum" jdbcType="DECIMAL" />
+    <result column="MEASRATE" property="measrate" jdbcType="VARCHAR" />
+    <result column="NINVOICENASTNUM" property="ninvoicenastnum" jdbcType="DECIMAL" />
+    <result column="NINASTNUM" property="ninastnum" jdbcType="DECIMAL" />
+    <result column="NOUTNASTUM" property="noutnastum" jdbcType="DECIMAL" />
+    <result column="NRETURNASTNUM" property="nreturnastnum" jdbcType="DECIMAL" />
+    <result column="MATERIALCODE" property="materialcode" jdbcType="VARCHAR" />
+    <result column="DELWAREHOUSECODE" property="delwarehousecode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, HID, PK_GROUP, PK_ORG, VROWNUM, CMATERIAL, MATERIALNAME, MATERIALSPEC, MATERIALTYPE, 
+    CASTUNITID, NASTNUM, NPRICE, NMNY, SIZECODE, DELWAREHOUSE, NEXCHANGERATE, VBDEF1, 
+    VBDEF2, VBDEF3, VBDEF4, VBDEF5, VBDEF6, ISSYNC, VSRCID, VBDEF7, VSRCBID, VBDEF8, 
+    VBDEF9, VBDEF10, TS, DR, CSALEUNITID, VUNITRATIO, SALENUM, NSALEPRICE, NINVOICENUM, 
+    NINVOICESALENUM, NINVOICEMNY, NINNUM, NINFONUM, NOUTNUM, NRETURNNUM, GIFT, SERVICES, 
+    NTHISINFONUM, CUNITID, NNUM, MEASRATE, NINVOICENASTNUM, NINASTNUM, NOUTNASTUM, NRETURNASTNUM, 
+    MATERIALCODE, DELWAREHOUSECODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fgc.pojo.OrderBVOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SO_ORDER_B
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SO_ORDER_B
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SO_ORDER_B
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fgc.pojo.OrderBVOExample" >
+    delete from SO_ORDER_B
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fgc.pojo.OrderBVO" >
+    insert into SO_ORDER_B (ID, HID, PK_GROUP, 
+      PK_ORG, VROWNUM, CMATERIAL, 
+      MATERIALNAME, MATERIALSPEC, MATERIALTYPE, 
+      CASTUNITID, NASTNUM, NPRICE, 
+      NMNY, SIZECODE, DELWAREHOUSE, 
+      NEXCHANGERATE, VBDEF1, VBDEF2, 
+      VBDEF3, VBDEF4, VBDEF5, 
+      VBDEF6, ISSYNC, VSRCID, 
+      VBDEF7, VSRCBID, VBDEF8, 
+      VBDEF9, VBDEF10, TS, 
+      DR, CSALEUNITID, VUNITRATIO, 
+      SALENUM, NSALEPRICE, NINVOICENUM, 
+      NINVOICESALENUM, NINVOICEMNY, NINNUM, 
+      NINFONUM, NOUTNUM, NRETURNNUM, 
+      GIFT, SERVICES, NTHISINFONUM, 
+      CUNITID, NNUM, MEASRATE, 
+      NINVOICENASTNUM, NINASTNUM, NOUTNASTUM, 
+      NRETURNASTNUM, MATERIALCODE, DELWAREHOUSECODE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{hid,jdbcType=VARCHAR}, #{pkGroup,jdbcType=VARCHAR}, 
+      #{pkOrg,jdbcType=VARCHAR}, #{vrownum,jdbcType=VARCHAR}, #{cmaterial,jdbcType=VARCHAR}, 
+      #{materialname,jdbcType=VARCHAR}, #{materialspec,jdbcType=VARCHAR}, #{materialtype,jdbcType=VARCHAR}, 
+      #{castunitid,jdbcType=VARCHAR}, #{nastnum,jdbcType=DECIMAL}, #{nprice,jdbcType=DECIMAL}, 
+      #{nmny,jdbcType=DECIMAL}, #{sizecode,jdbcType=VARCHAR}, #{delwarehouse,jdbcType=VARCHAR}, 
+      #{nexchangerate,jdbcType=VARCHAR}, #{vbdef1,jdbcType=VARCHAR}, #{vbdef2,jdbcType=VARCHAR}, 
+      #{vbdef3,jdbcType=VARCHAR}, #{vbdef4,jdbcType=VARCHAR}, #{vbdef5,jdbcType=VARCHAR}, 
+      #{vbdef6,jdbcType=VARCHAR}, #{issync,jdbcType=DECIMAL}, #{vsrcid,jdbcType=VARCHAR}, 
+      #{vbdef7,jdbcType=VARCHAR}, #{vsrcbid,jdbcType=VARCHAR}, #{vbdef8,jdbcType=VARCHAR}, 
+      #{vbdef9,jdbcType=VARCHAR}, #{vbdef10,jdbcType=VARCHAR}, #{ts,jdbcType=VARCHAR}, 
+      #{dr,jdbcType=DECIMAL}, #{csaleunitid,jdbcType=VARCHAR}, #{vunitratio,jdbcType=VARCHAR}, 
+      #{salenum,jdbcType=DECIMAL}, #{nsaleprice,jdbcType=DECIMAL}, #{ninvoicenum,jdbcType=DECIMAL}, 
+      #{ninvoicesalenum,jdbcType=DECIMAL}, #{ninvoicemny,jdbcType=DECIMAL}, #{ninnum,jdbcType=DECIMAL}, 
+      #{ninfonum,jdbcType=DECIMAL}, #{noutnum,jdbcType=DECIMAL}, #{nreturnnum,jdbcType=DECIMAL}, 
+      #{gift,jdbcType=DECIMAL}, #{services,jdbcType=DECIMAL}, #{nthisinfonum,jdbcType=DECIMAL}, 
+      #{cunitid,jdbcType=VARCHAR}, #{nnum,jdbcType=DECIMAL}, #{measrate,jdbcType=VARCHAR}, 
+      #{ninvoicenastnum,jdbcType=DECIMAL}, #{ninastnum,jdbcType=DECIMAL}, #{noutnastum,jdbcType=DECIMAL}, 
+      #{nreturnastnum,jdbcType=DECIMAL}, #{materialcode,jdbcType=VARCHAR}, #{delwarehousecode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fgc.pojo.OrderBVO" >
+    insert into SO_ORDER_B
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="hid != null" >
+        HID,
+      </if>
+      <if test="pkGroup != null" >
+        PK_GROUP,
+      </if>
+      <if test="pkOrg != null" >
+        PK_ORG,
+      </if>
+      <if test="vrownum != null" >
+        VROWNUM,
+      </if>
+      <if test="cmaterial != null" >
+        CMATERIAL,
+      </if>
+      <if test="materialname != null" >
+        MATERIALNAME,
+      </if>
+      <if test="materialspec != null" >
+        MATERIALSPEC,
+      </if>
+      <if test="materialtype != null" >
+        MATERIALTYPE,
+      </if>
+      <if test="castunitid != null" >
+        CASTUNITID,
+      </if>
+      <if test="nastnum != null" >
+        NASTNUM,
+      </if>
+      <if test="nprice != null" >
+        NPRICE,
+      </if>
+      <if test="nmny != null" >
+        NMNY,
+      </if>
+      <if test="sizecode != null" >
+        SIZECODE,
+      </if>
+      <if test="delwarehouse != null" >
+        DELWAREHOUSE,
+      </if>
+      <if test="nexchangerate != null" >
+        NEXCHANGERATE,
+      </if>
+      <if test="vbdef1 != null" >
+        VBDEF1,
+      </if>
+      <if test="vbdef2 != null" >
+        VBDEF2,
+      </if>
+      <if test="vbdef3 != null" >
+        VBDEF3,
+      </if>
+      <if test="vbdef4 != null" >
+        VBDEF4,
+      </if>
+      <if test="vbdef5 != null" >
+        VBDEF5,
+      </if>
+      <if test="vbdef6 != null" >
+        VBDEF6,
+      </if>
+      <if test="issync != null" >
+        ISSYNC,
+      </if>
+      <if test="vsrcid != null" >
+        VSRCID,
+      </if>
+      <if test="vbdef7 != null" >
+        VBDEF7,
+      </if>
+      <if test="vsrcbid != null" >
+        VSRCBID,
+      </if>
+      <if test="vbdef8 != null" >
+        VBDEF8,
+      </if>
+      <if test="vbdef9 != null" >
+        VBDEF9,
+      </if>
+      <if test="vbdef10 != null" >
+        VBDEF10,
+      </if>
+      <if test="ts != null" >
+        TS,
+      </if>
+      <if test="dr != null" >
+        DR,
+      </if>
+      <if test="csaleunitid != null" >
+        CSALEUNITID,
+      </if>
+      <if test="vunitratio != null" >
+        VUNITRATIO,
+      </if>
+      <if test="salenum != null" >
+        SALENUM,
+      </if>
+      <if test="nsaleprice != null" >
+        NSALEPRICE,
+      </if>
+      <if test="ninvoicenum != null" >
+        NINVOICENUM,
+      </if>
+      <if test="ninvoicesalenum != null" >
+        NINVOICESALENUM,
+      </if>
+      <if test="ninvoicemny != null" >
+        NINVOICEMNY,
+      </if>
+      <if test="ninnum != null" >
+        NINNUM,
+      </if>
+      <if test="ninfonum != null" >
+        NINFONUM,
+      </if>
+      <if test="noutnum != null" >
+        NOUTNUM,
+      </if>
+      <if test="nreturnnum != null" >
+        NRETURNNUM,
+      </if>
+      <if test="gift != null" >
+        GIFT,
+      </if>
+      <if test="services != null" >
+        SERVICES,
+      </if>
+      <if test="nthisinfonum != null" >
+        NTHISINFONUM,
+      </if>
+      <if test="cunitid != null" >
+        CUNITID,
+      </if>
+      <if test="nnum != null" >
+        NNUM,
+      </if>
+      <if test="measrate != null" >
+        MEASRATE,
+      </if>
+      <if test="ninvoicenastnum != null" >
+        NINVOICENASTNUM,
+      </if>
+      <if test="ninastnum != null" >
+        NINASTNUM,
+      </if>
+      <if test="noutnastum != null" >
+        NOUTNASTUM,
+      </if>
+      <if test="nreturnastnum != null" >
+        NRETURNASTNUM,
+      </if>
+      <if test="materialcode != null" >
+        MATERIALCODE,
+      </if>
+      <if test="delwarehousecode != null" >
+        DELWAREHOUSECODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="hid != null" >
+        #{hid,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGroup != null" >
+        #{pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pkOrg != null" >
+        #{pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="vrownum != null" >
+        #{vrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="cmaterial != null" >
+        #{cmaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="materialname != null" >
+        #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="materialspec != null" >
+        #{materialspec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialtype != null" >
+        #{materialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="castunitid != null" >
+        #{castunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="nastnum != null" >
+        #{nastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nprice != null" >
+        #{nprice,jdbcType=DECIMAL},
+      </if>
+      <if test="nmny != null" >
+        #{nmny,jdbcType=DECIMAL},
+      </if>
+      <if test="sizecode != null" >
+        #{sizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="delwarehouse != null" >
+        #{delwarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="nexchangerate != null" >
+        #{nexchangerate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef1 != null" >
+        #{vbdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef2 != null" >
+        #{vbdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef3 != null" >
+        #{vbdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef4 != null" >
+        #{vbdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef5 != null" >
+        #{vbdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef6 != null" >
+        #{vbdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="issync != null" >
+        #{issync,jdbcType=DECIMAL},
+      </if>
+      <if test="vsrcid != null" >
+        #{vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef7 != null" >
+        #{vbdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrcbid != null" >
+        #{vsrcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef8 != null" >
+        #{vbdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef9 != null" >
+        #{vbdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef10 != null" >
+        #{vbdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="csaleunitid != null" >
+        #{csaleunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="vunitratio != null" >
+        #{vunitratio,jdbcType=VARCHAR},
+      </if>
+      <if test="salenum != null" >
+        #{salenum,jdbcType=DECIMAL},
+      </if>
+      <if test="nsaleprice != null" >
+        #{nsaleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="ninvoicenum != null" >
+        #{ninvoicenum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninvoicesalenum != null" >
+        #{ninvoicesalenum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninvoicemny != null" >
+        #{ninvoicemny,jdbcType=DECIMAL},
+      </if>
+      <if test="ninnum != null" >
+        #{ninnum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninfonum != null" >
+        #{ninfonum,jdbcType=DECIMAL},
+      </if>
+      <if test="noutnum != null" >
+        #{noutnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nreturnnum != null" >
+        #{nreturnnum,jdbcType=DECIMAL},
+      </if>
+      <if test="gift != null" >
+        #{gift,jdbcType=DECIMAL},
+      </if>
+      <if test="services != null" >
+        #{services,jdbcType=DECIMAL},
+      </if>
+      <if test="nthisinfonum != null" >
+        #{nthisinfonum,jdbcType=DECIMAL},
+      </if>
+      <if test="cunitid != null" >
+        #{cunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="nnum != null" >
+        #{nnum,jdbcType=DECIMAL},
+      </if>
+      <if test="measrate != null" >
+        #{measrate,jdbcType=VARCHAR},
+      </if>
+      <if test="ninvoicenastnum != null" >
+        #{ninvoicenastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninastnum != null" >
+        #{ninastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="noutnastum != null" >
+        #{noutnastum,jdbcType=DECIMAL},
+      </if>
+      <if test="nreturnastnum != null" >
+        #{nreturnastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="materialcode != null" >
+        #{materialcode,jdbcType=VARCHAR},
+      </if>
+      <if test="delwarehousecode != null" >
+        #{delwarehousecode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fgc.pojo.OrderBVOExample" resultType="java.lang.Integer" >
+    select count(*) from SO_ORDER_B
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SO_ORDER_B
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hid != null" >
+        HID = #{record.hid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkGroup != null" >
+        PK_GROUP = #{record.pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkOrg != null" >
+        PK_ORG = #{record.pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vrownum != null" >
+        VROWNUM = #{record.vrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmaterial != null" >
+        CMATERIAL = #{record.cmaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialname != null" >
+        MATERIALNAME = #{record.materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialspec != null" >
+        MATERIALSPEC = #{record.materialspec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialtype != null" >
+        MATERIALTYPE = #{record.materialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.castunitid != null" >
+        CASTUNITID = #{record.castunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nastnum != null" >
+        NASTNUM = #{record.nastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nprice != null" >
+        NPRICE = #{record.nprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nmny != null" >
+        NMNY = #{record.nmny,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sizecode != null" >
+        SIZECODE = #{record.sizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delwarehouse != null" >
+        DELWAREHOUSE = #{record.delwarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nexchangerate != null" >
+        NEXCHANGERATE = #{record.nexchangerate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef1 != null" >
+        VBDEF1 = #{record.vbdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef2 != null" >
+        VBDEF2 = #{record.vbdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef3 != null" >
+        VBDEF3 = #{record.vbdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef4 != null" >
+        VBDEF4 = #{record.vbdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef5 != null" >
+        VBDEF5 = #{record.vbdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef6 != null" >
+        VBDEF6 = #{record.vbdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issync != null" >
+        ISSYNC = #{record.issync,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vsrcid != null" >
+        VSRCID = #{record.vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef7 != null" >
+        VBDEF7 = #{record.vbdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vsrcbid != null" >
+        VSRCBID = #{record.vsrcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef8 != null" >
+        VBDEF8 = #{record.vbdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef9 != null" >
+        VBDEF9 = #{record.vbdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vbdef10 != null" >
+        VBDEF10 = #{record.vbdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ts != null" >
+        TS = #{record.ts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dr != null" >
+        DR = #{record.dr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.csaleunitid != null" >
+        CSALEUNITID = #{record.csaleunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vunitratio != null" >
+        VUNITRATIO = #{record.vunitratio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salenum != null" >
+        SALENUM = #{record.salenum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nsaleprice != null" >
+        NSALEPRICE = #{record.nsaleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ninvoicenum != null" >
+        NINVOICENUM = #{record.ninvoicenum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ninvoicesalenum != null" >
+        NINVOICESALENUM = #{record.ninvoicesalenum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ninvoicemny != null" >
+        NINVOICEMNY = #{record.ninvoicemny,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ninnum != null" >
+        NINNUM = #{record.ninnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ninfonum != null" >
+        NINFONUM = #{record.ninfonum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.noutnum != null" >
+        NOUTNUM = #{record.noutnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nreturnnum != null" >
+        NRETURNNUM = #{record.nreturnnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gift != null" >
+        GIFT = #{record.gift,jdbcType=DECIMAL},
+      </if>
+      <if test="record.services != null" >
+        SERVICES = #{record.services,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nthisinfonum != null" >
+        NTHISINFONUM = #{record.nthisinfonum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cunitid != null" >
+        CUNITID = #{record.cunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nnum != null" >
+        NNUM = #{record.nnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.measrate != null" >
+        MEASRATE = #{record.measrate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ninvoicenastnum != null" >
+        NINVOICENASTNUM = #{record.ninvoicenastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ninastnum != null" >
+        NINASTNUM = #{record.ninastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.noutnastum != null" >
+        NOUTNASTUM = #{record.noutnastum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nreturnastnum != null" >
+        NRETURNASTNUM = #{record.nreturnastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.materialcode != null" >
+        MATERIALCODE = #{record.materialcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delwarehousecode != null" >
+        DELWAREHOUSECODE = #{record.delwarehousecode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SO_ORDER_B
+    set ID = #{record.id,jdbcType=VARCHAR},
+      HID = #{record.hid,jdbcType=VARCHAR},
+      PK_GROUP = #{record.pkGroup,jdbcType=VARCHAR},
+      PK_ORG = #{record.pkOrg,jdbcType=VARCHAR},
+      VROWNUM = #{record.vrownum,jdbcType=VARCHAR},
+      CMATERIAL = #{record.cmaterial,jdbcType=VARCHAR},
+      MATERIALNAME = #{record.materialname,jdbcType=VARCHAR},
+      MATERIALSPEC = #{record.materialspec,jdbcType=VARCHAR},
+      MATERIALTYPE = #{record.materialtype,jdbcType=VARCHAR},
+      CASTUNITID = #{record.castunitid,jdbcType=VARCHAR},
+      NASTNUM = #{record.nastnum,jdbcType=DECIMAL},
+      NPRICE = #{record.nprice,jdbcType=DECIMAL},
+      NMNY = #{record.nmny,jdbcType=DECIMAL},
+      SIZECODE = #{record.sizecode,jdbcType=VARCHAR},
+      DELWAREHOUSE = #{record.delwarehouse,jdbcType=VARCHAR},
+      NEXCHANGERATE = #{record.nexchangerate,jdbcType=VARCHAR},
+      VBDEF1 = #{record.vbdef1,jdbcType=VARCHAR},
+      VBDEF2 = #{record.vbdef2,jdbcType=VARCHAR},
+      VBDEF3 = #{record.vbdef3,jdbcType=VARCHAR},
+      VBDEF4 = #{record.vbdef4,jdbcType=VARCHAR},
+      VBDEF5 = #{record.vbdef5,jdbcType=VARCHAR},
+      VBDEF6 = #{record.vbdef6,jdbcType=VARCHAR},
+      ISSYNC = #{record.issync,jdbcType=DECIMAL},
+      VSRCID = #{record.vsrcid,jdbcType=VARCHAR},
+      VBDEF7 = #{record.vbdef7,jdbcType=VARCHAR},
+      VSRCBID = #{record.vsrcbid,jdbcType=VARCHAR},
+      VBDEF8 = #{record.vbdef8,jdbcType=VARCHAR},
+      VBDEF9 = #{record.vbdef9,jdbcType=VARCHAR},
+      VBDEF10 = #{record.vbdef10,jdbcType=VARCHAR},
+      TS = #{record.ts,jdbcType=VARCHAR},
+      DR = #{record.dr,jdbcType=DECIMAL},
+      CSALEUNITID = #{record.csaleunitid,jdbcType=VARCHAR},
+      VUNITRATIO = #{record.vunitratio,jdbcType=VARCHAR},
+      SALENUM = #{record.salenum,jdbcType=DECIMAL},
+      NSALEPRICE = #{record.nsaleprice,jdbcType=DECIMAL},
+      NINVOICENUM = #{record.ninvoicenum,jdbcType=DECIMAL},
+      NINVOICESALENUM = #{record.ninvoicesalenum,jdbcType=DECIMAL},
+      NINVOICEMNY = #{record.ninvoicemny,jdbcType=DECIMAL},
+      NINNUM = #{record.ninnum,jdbcType=DECIMAL},
+      NINFONUM = #{record.ninfonum,jdbcType=DECIMAL},
+      NOUTNUM = #{record.noutnum,jdbcType=DECIMAL},
+      NRETURNNUM = #{record.nreturnnum,jdbcType=DECIMAL},
+      GIFT = #{record.gift,jdbcType=DECIMAL},
+      SERVICES = #{record.services,jdbcType=DECIMAL},
+      NTHISINFONUM = #{record.nthisinfonum,jdbcType=DECIMAL},
+      CUNITID = #{record.cunitid,jdbcType=VARCHAR},
+      NNUM = #{record.nnum,jdbcType=DECIMAL},
+      MEASRATE = #{record.measrate,jdbcType=VARCHAR},
+      NINVOICENASTNUM = #{record.ninvoicenastnum,jdbcType=DECIMAL},
+      NINASTNUM = #{record.ninastnum,jdbcType=DECIMAL},
+      NOUTNASTUM = #{record.noutnastum,jdbcType=DECIMAL},
+      NRETURNASTNUM = #{record.nreturnastnum,jdbcType=DECIMAL},
+      MATERIALCODE = #{record.materialcode,jdbcType=VARCHAR},
+      DELWAREHOUSECODE = #{record.delwarehousecode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fgc.pojo.OrderBVO" >
+    update SO_ORDER_B
+    <set >
+      <if test="hid != null" >
+        HID = #{hid,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGroup != null" >
+        PK_GROUP = #{pkGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pkOrg != null" >
+        PK_ORG = #{pkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="vrownum != null" >
+        VROWNUM = #{vrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="cmaterial != null" >
+        CMATERIAL = #{cmaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="materialname != null" >
+        MATERIALNAME = #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="materialspec != null" >
+        MATERIALSPEC = #{materialspec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialtype != null" >
+        MATERIALTYPE = #{materialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="castunitid != null" >
+        CASTUNITID = #{castunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="nastnum != null" >
+        NASTNUM = #{nastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nprice != null" >
+        NPRICE = #{nprice,jdbcType=DECIMAL},
+      </if>
+      <if test="nmny != null" >
+        NMNY = #{nmny,jdbcType=DECIMAL},
+      </if>
+      <if test="sizecode != null" >
+        SIZECODE = #{sizecode,jdbcType=VARCHAR},
+      </if>
+      <if test="delwarehouse != null" >
+        DELWAREHOUSE = #{delwarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="nexchangerate != null" >
+        NEXCHANGERATE = #{nexchangerate,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef1 != null" >
+        VBDEF1 = #{vbdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef2 != null" >
+        VBDEF2 = #{vbdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef3 != null" >
+        VBDEF3 = #{vbdef3,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef4 != null" >
+        VBDEF4 = #{vbdef4,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef5 != null" >
+        VBDEF5 = #{vbdef5,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef6 != null" >
+        VBDEF6 = #{vbdef6,jdbcType=VARCHAR},
+      </if>
+      <if test="issync != null" >
+        ISSYNC = #{issync,jdbcType=DECIMAL},
+      </if>
+      <if test="vsrcid != null" >
+        VSRCID = #{vsrcid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef7 != null" >
+        VBDEF7 = #{vbdef7,jdbcType=VARCHAR},
+      </if>
+      <if test="vsrcbid != null" >
+        VSRCBID = #{vsrcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef8 != null" >
+        VBDEF8 = #{vbdef8,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef9 != null" >
+        VBDEF9 = #{vbdef9,jdbcType=VARCHAR},
+      </if>
+      <if test="vbdef10 != null" >
+        VBDEF10 = #{vbdef10,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        TS = #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="dr != null" >
+        DR = #{dr,jdbcType=DECIMAL},
+      </if>
+      <if test="csaleunitid != null" >
+        CSALEUNITID = #{csaleunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="vunitratio != null" >
+        VUNITRATIO = #{vunitratio,jdbcType=VARCHAR},
+      </if>
+      <if test="salenum != null" >
+        SALENUM = #{salenum,jdbcType=DECIMAL},
+      </if>
+      <if test="nsaleprice != null" >
+        NSALEPRICE = #{nsaleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="ninvoicenum != null" >
+        NINVOICENUM = #{ninvoicenum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninvoicesalenum != null" >
+        NINVOICESALENUM = #{ninvoicesalenum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninvoicemny != null" >
+        NINVOICEMNY = #{ninvoicemny,jdbcType=DECIMAL},
+      </if>
+      <if test="ninnum != null" >
+        NINNUM = #{ninnum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninfonum != null" >
+        NINFONUM = #{ninfonum,jdbcType=DECIMAL},
+      </if>
+      <if test="noutnum != null" >
+        NOUTNUM = #{noutnum,jdbcType=DECIMAL},
+      </if>
+      <if test="nreturnnum != null" >
+        NRETURNNUM = #{nreturnnum,jdbcType=DECIMAL},
+      </if>
+      <if test="gift != null" >
+        GIFT = #{gift,jdbcType=DECIMAL},
+      </if>
+      <if test="services != null" >
+        SERVICES = #{services,jdbcType=DECIMAL},
+      </if>
+      <if test="nthisinfonum != null" >
+        NTHISINFONUM = #{nthisinfonum,jdbcType=DECIMAL},
+      </if>
+      <if test="cunitid != null" >
+        CUNITID = #{cunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="nnum != null" >
+        NNUM = #{nnum,jdbcType=DECIMAL},
+      </if>
+      <if test="measrate != null" >
+        MEASRATE = #{measrate,jdbcType=VARCHAR},
+      </if>
+      <if test="ninvoicenastnum != null" >
+        NINVOICENASTNUM = #{ninvoicenastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="ninastnum != null" >
+        NINASTNUM = #{ninastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="noutnastum != null" >
+        NOUTNASTUM = #{noutnastum,jdbcType=DECIMAL},
+      </if>
+      <if test="nreturnastnum != null" >
+        NRETURNASTNUM = #{nreturnastnum,jdbcType=DECIMAL},
+      </if>
+      <if test="materialcode != null" >
+        MATERIALCODE = #{materialcode,jdbcType=VARCHAR},
+      </if>
+      <if test="delwarehousecode != null" >
+        DELWAREHOUSECODE = #{delwarehousecode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fgc.pojo.OrderBVO" >
+    update SO_ORDER_B
+    set HID = #{hid,jdbcType=VARCHAR},
+      PK_GROUP = #{pkGroup,jdbcType=VARCHAR},
+      PK_ORG = #{pkOrg,jdbcType=VARCHAR},
+      VROWNUM = #{vrownum,jdbcType=VARCHAR},
+      CMATERIAL = #{cmaterial,jdbcType=VARCHAR},
+      MATERIALNAME = #{materialname,jdbcType=VARCHAR},
+      MATERIALSPEC = #{materialspec,jdbcType=VARCHAR},
+      MATERIALTYPE = #{materialtype,jdbcType=VARCHAR},
+      CASTUNITID = #{castunitid,jdbcType=VARCHAR},
+      NASTNUM = #{nastnum,jdbcType=DECIMAL},
+      NPRICE = #{nprice,jdbcType=DECIMAL},
+      NMNY = #{nmny,jdbcType=DECIMAL},
+      SIZECODE = #{sizecode,jdbcType=VARCHAR},
+      DELWAREHOUSE = #{delwarehouse,jdbcType=VARCHAR},
+      NEXCHANGERATE = #{nexchangerate,jdbcType=VARCHAR},
+      VBDEF1 = #{vbdef1,jdbcType=VARCHAR},
+      VBDEF2 = #{vbdef2,jdbcType=VARCHAR},
+      VBDEF3 = #{vbdef3,jdbcType=VARCHAR},
+      VBDEF4 = #{vbdef4,jdbcType=VARCHAR},
+      VBDEF5 = #{vbdef5,jdbcType=VARCHAR},
+      VBDEF6 = #{vbdef6,jdbcType=VARCHAR},
+      ISSYNC = #{issync,jdbcType=DECIMAL},
+      VSRCID = #{vsrcid,jdbcType=VARCHAR},
+      VBDEF7 = #{vbdef7,jdbcType=VARCHAR},
+      VSRCBID = #{vsrcbid,jdbcType=VARCHAR},
+      VBDEF8 = #{vbdef8,jdbcType=VARCHAR},
+      VBDEF9 = #{vbdef9,jdbcType=VARCHAR},
+      VBDEF10 = #{vbdef10,jdbcType=VARCHAR},
+      TS = #{ts,jdbcType=VARCHAR},
+      DR = #{dr,jdbcType=DECIMAL},
+      CSALEUNITID = #{csaleunitid,jdbcType=VARCHAR},
+      VUNITRATIO = #{vunitratio,jdbcType=VARCHAR},
+      SALENUM = #{salenum,jdbcType=DECIMAL},
+      NSALEPRICE = #{nsaleprice,jdbcType=DECIMAL},
+      NINVOICENUM = #{ninvoicenum,jdbcType=DECIMAL},
+      NINVOICESALENUM = #{ninvoicesalenum,jdbcType=DECIMAL},
+      NINVOICEMNY = #{ninvoicemny,jdbcType=DECIMAL},
+      NINNUM = #{ninnum,jdbcType=DECIMAL},
+      NINFONUM = #{ninfonum,jdbcType=DECIMAL},
+      NOUTNUM = #{noutnum,jdbcType=DECIMAL},
+      NRETURNNUM = #{nreturnnum,jdbcType=DECIMAL},
+      GIFT = #{gift,jdbcType=DECIMAL},
+      SERVICES = #{services,jdbcType=DECIMAL},
+      NTHISINFONUM = #{nthisinfonum,jdbcType=DECIMAL},
+      CUNITID = #{cunitid,jdbcType=VARCHAR},
+      NNUM = #{nnum,jdbcType=DECIMAL},
+      MEASRATE = #{measrate,jdbcType=VARCHAR},
+      NINVOICENASTNUM = #{ninvoicenastnum,jdbcType=DECIMAL},
+      NINASTNUM = #{ninastnum,jdbcType=DECIMAL},
+      NOUTNASTUM = #{noutnastum,jdbcType=DECIMAL},
+      NRETURNASTNUM = #{nreturnastnum,jdbcType=DECIMAL},
+      MATERIALCODE = #{materialcode,jdbcType=VARCHAR},
+      DELWAREHOUSECODE = #{delwarehousecode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="deleteByHeadPrimaryKeys" parameterType="java.util.List" >
+    update SO_ORDER_B set DR = 1
+    where HID in 
+     <foreach item="item" collection="ids" separator="," open="(" close=")" index="">    
+          #{item, jdbcType=VARCHAR}    
+        </foreach>  
+  </update>
+</mapper>
